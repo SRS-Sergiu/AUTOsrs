@@ -1,0 +1,76 @@
+﻿@model IEnumerable<AUTOsrs.Models.AnuntModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ID_Anunt)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.ID_User)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.ID_Model)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.ID_Caracteristica)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.KM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pret)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnFabricatie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descriere)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Anunt)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ID_User)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ID_Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Caracteristica)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.KM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pret)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnFabricatie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descriere)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

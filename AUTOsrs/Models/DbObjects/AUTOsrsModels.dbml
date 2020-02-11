@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AUTOsrs" Class="AUTOsrsModelsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\AUTOsrs.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="AUTOsrsConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="ID_User" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Fname" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Lname" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Anunt" Member="Anunts" ThisKey="ID_User" OtherKey="ID_User" Type="Anunt" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipCaracteristica" Member="TipCaracteristicas">
+    <Type Name="TipCaracteristica">
+      <Column Name="ID_TipCaracteristica" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NumeTipCaracteristica" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Association Name="TipCaracteristica_Caracteristici" Member="Caracteristicis" ThisKey="ID_TipCaracteristica" OtherKey="ID_TipCaracteristica" Type="Caracteristici" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Caracteristici" Member="Caracteristicis">
+    <Type Name="Caracteristici">
+      <Column Name="ID_Caracteristica" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NumeCaracteristica" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_TipCaracteristica" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Caracteristici_Anunt" Member="Anunts" ThisKey="ID_Caracteristica" OtherKey="ID_Caracteristica" Type="Anunt" />
+      <Association Name="TipCaracteristica_Caracteristici" Member="TipCaracteristica" ThisKey="ID_TipCaracteristica" OtherKey="ID_TipCaracteristica" Type="TipCaracteristica" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MarcaAuto" Member="MarcaAutos">
+    <Type Name="MarcaAuto">
+      <Column Name="ID_Marca" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="MarcaAuto_ModelAuto" Member="ModelAutos" ThisKey="ID_Marca" OtherKey="ID_Marca" Type="ModelAuto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ModelAuto" Member="ModelAutos">
+    <Type Name="ModelAuto">
+      <Column Name="ID_Model" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_Marca" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Model" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="ModelAuto_Anunt" Member="Anunts" ThisKey="ID_Model" OtherKey="ID_Model" Type="Anunt" />
+      <Association Name="MarcaAuto_ModelAuto" Member="MarcaAuto" ThisKey="ID_Marca" OtherKey="ID_Marca" Type="MarcaAuto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Anunt" Member="Anunts">
+    <Type Name="Anunt">
+      <Column Name="ID_Anunt" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_User" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ID_Model" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ID_Caracteristica" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="KM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Pret" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descriere" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="AnFabricatie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Caracteristici_Anunt" Member="Caracteristici" ThisKey="ID_Caracteristica" OtherKey="ID_Caracteristica" Type="Caracteristici" IsForeignKey="true" />
+      <Association Name="ModelAuto_Anunt" Member="ModelAuto" ThisKey="ID_Model" OtherKey="ID_Model" Type="ModelAuto" IsForeignKey="true" />
+      <Association Name="User_Anunt" Member="User" ThisKey="ID_User" OtherKey="ID_User" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

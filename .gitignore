@@ -3,3 +3,7 @@
 ################################################################################
 
 /AUTOsrs/bin
+/AUTOsrs/obj/Debug
+/AUTOsrs/packages
+/AUTOsrs.Tests/bin/Debug
+/AUTOsrs.Tests/obj/Debug
