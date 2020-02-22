@@ -5,25 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Add announcements</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table asd">
     <tr>
         @*<th>
-            @Html.DisplayNameFor(model => model.ID_Anunt)
-        </th>*@
+                @Html.DisplayNameFor(model => model.ID_User)
+            </th>*@
         @*<th>
-            @Html.DisplayNameFor(model => model.ID_User)
-        </th>*@
+                @Html.DisplayNameFor(model => model.ID_Model)
+            </th>*@
         @*<th>
-            @Html.DisplayNameFor(model => model.ID_Model)
-        </th>*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.ID_Caracteristica)
-        </th>*@
+                @Html.DisplayNameFor(model => model.ID_Caracteristica)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.KM)
         </th>
@@ -39,38 +36,37 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
+    @foreach (var item in Model)
+    {
+<tr>
+    @*<td>
             @Html.DisplayFor(modelItem => item.ID_Anunt)
-        </td>
-        @*<td>
+        </td>*@
+    @*<td>
             @Html.DisplayFor(modelItem => item.ID_User)
         </td>*@
-        @*<td>
+    @*<td>
             @Html.DisplayFor(modelItem => item.ID_Model)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ID_Caracteristica)
         </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.KM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pret)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnFabricatie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descriere)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+   
+    <td>
+        @Html.DisplayFor(modelItem => item.Pret)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AnFabricatie)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Descriere)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>
+</tr>
+    }
 
 </table>
