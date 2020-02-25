@@ -1,4 +1,6 @@
 ﻿using AUTOsrs.Models;
+using AUTOsrs.Models.DbObjects;
+using AUTOsrs.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +47,33 @@ namespace AUTOsrs.Repository
                 dbMarcaAutoModel.Marca = marcaAuto.Marca;
                 dbMarcaAutoModel.ID_Marca = marcaAuto.ID_Marca;
             }
+            return dbMarcaAutoModel;
+        }
+
+
+        public AdminViewModel GetAdmin(Guid marcaAutoID)
+        {
+            AdminViewModel adminViewModel = new AdminViewModel();
+
+            MarcaAuto marcaAuto = dbContext.MarcaAutos.FirstOrDefault(x => x.ID_Marca == marcaAutoID);
+
+            if (marcaAuto != null)
+            {
+                adminViewModel.Marca = marcaAuto.Marca;
+            }
+
             return null;
+        }
+
+        //insert ModelAuto
+        public void InsertMarcaAuto(MarcaAutoModel marcaAutoModel)
+        {
+            //generate new guid id
+            marcaAutoModel.ID_Marca = Guid.NewGuid();
+
+            //add to orm layer
+            dbContext.MarcaAutos.InsertOnSubmit(MapModelsToDbObject(marcaAutoModel));
+            dbContext.SubmitChanges();
         }
     }
 }

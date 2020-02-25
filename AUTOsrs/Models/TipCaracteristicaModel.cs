@@ -8,6 +8,6 @@ namespace AUTOsrs.Models
     public class TipCaracteristicaModel
     {
         public  int ID_TipCaracteristica { get; set; }
-        public  int NumeTipCaracteristica { get; set; }
+        public string NumeTipCaracteristica { get; set; }
     }
 }

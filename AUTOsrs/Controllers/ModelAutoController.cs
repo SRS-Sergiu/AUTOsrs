@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AUTOsrs.Models.DbObjects;
+using AUTOsrs.Repository;
+using AUTOsrs.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +11,7 @@ namespace AUTOsrs.Controllers
 {
     public class ModelAutoController : Controller
     {
-        private Repository.ModelAutoRepository marcaAutoRepository = new Repository.ModelAutoRepository();
+        private Repository.ModelAutoRepository modelAutoRepository = new Repository.ModelAutoRepository();
 
         // GET: ModelAuto
         public ActionResult Index()
@@ -17,9 +20,10 @@ namespace AUTOsrs.Controllers
         }
 
         // GET: ModelAuto/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            AdminViewModel viewModel = modelAutoRepository.GetAdmin(id);
+            return View(viewModel);
         }
 
         // GET: ModelAuto/Create

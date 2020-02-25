@@ -21,11 +21,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @Html.ActionLink("Dashboard", "Dashboard", "Admin", null, new { @class = "page-scroll" })
+                    <li> @Html.ActionLink("Dashboard", "Dashboard", "Admin")</li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("View Anunt", "Index", "Anunt")</li>
+                    <li>@Html.ActionLink("Ditails Anunt", "Details", "ModelAuto")</li>
                     <li>@Html.ActionLink("Create Anunt", "Create", "Anunt")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

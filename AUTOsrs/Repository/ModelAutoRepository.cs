@@ -1,5 +1,6 @@
 ﻿using AUTOsrs.Models;
 using AUTOsrs.Models.DbObjects;
+using AUTOsrs.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,6 +103,22 @@ namespace AUTOsrs.Repository
 
                 return dbModelAutoModel;
             }
+            return null;
+        }
+
+
+        //viewModel
+        public AdminViewModel GetAdmin(Guid modelAutoID)
+        {
+            AdminViewModel adminViewModel = new AdminViewModel();
+
+            ModelAuto modelAuto = dbContext.ModelAutos.FirstOrDefault(x => x.ID_Model == modelAutoID);
+
+            if(modelAuto != null)
+            {
+                adminViewModel.Model = modelAuto.Model;
+            }
+
             return null;
         }
     }

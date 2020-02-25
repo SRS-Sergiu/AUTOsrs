@@ -12,15 +12,6 @@
 </p>
 <table class="table asd">
     <tr>
-        @*<th>
-                @Html.DisplayNameFor(model => model.ID_User)
-            </th>*@
-        @*<th>
-                @Html.DisplayNameFor(model => model.ID_Model)
-            </th>*@
-        @*<th>
-                @Html.DisplayNameFor(model => model.ID_Caracteristica)
-            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.KM)
         </th>
@@ -39,19 +30,7 @@
     @foreach (var item in Model)
     {
 <tr>
-    @*<td>
-            @Html.DisplayFor(modelItem => item.ID_Anunt)
-        </td>*@
-    @*<td>
-            @Html.DisplayFor(modelItem => item.ID_User)
-        </td>*@
-    @*<td>
-            @Html.DisplayFor(modelItem => item.ID_Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_Caracteristica)
-        </td>*@
-   
+    
     <td>
         @Html.DisplayFor(modelItem => item.Pret)
     </td>
