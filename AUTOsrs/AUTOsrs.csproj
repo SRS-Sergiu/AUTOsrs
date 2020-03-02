@@ -182,11 +182,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminModelController.cs" />
+    <Compile Include="Controllers\AdminMarcaController.cs" />
     <Compile Include="Controllers\AnuntController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ModelAutoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,8 +284,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Anunt\Index.cshtml" />
     <Content Include="Views\Anunt\CreateAnunt.cshtml" />
-    <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\AdminMarca\DashboardCreareMarca.cshtml" />
     <Content Include="Views\ModelAuto\Details.cshtml" />
+    <Content Include="Views\AdminMarca\DashboardListaMarci.cshtml" />
+    <Content Include="Views\AdminModel\DashboardCreareModel.cshtml" />
+    <Content Include="Views\AdminModel\DashboardListaModele.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -303,7 +306,9 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\MarcaAuto\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

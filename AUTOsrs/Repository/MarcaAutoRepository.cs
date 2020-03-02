@@ -39,7 +39,7 @@ namespace AUTOsrs.Repository
             return null;
         }
 
-        private Models.DbObjects.MarcaAuto MapModelsToDbObject(MarcaAutoModel marcaAuto)
+        private MarcaAuto MapModelsToDbObject(MarcaAutoModel marcaAuto)
         {
             Models.DbObjects.MarcaAuto dbMarcaAutoModel = new Models.DbObjects.MarcaAuto();
             if(dbMarcaAutoModel != null)
@@ -51,21 +51,17 @@ namespace AUTOsrs.Repository
         }
 
 
-        public AdminViewModel GetAdmin(Guid marcaAutoID)
+        public List<MarcaAutoModel> GetAllMarca()
         {
-            AdminViewModel adminViewModel = new AdminViewModel();
-
-            MarcaAuto marcaAuto = dbContext.MarcaAutos.FirstOrDefault(x => x.ID_Marca == marcaAutoID);
-
-            if (marcaAuto != null)
+            List<MarcaAutoModel> marcaList = new List<MarcaAutoModel>();
+            foreach (Models.DbObjects.MarcaAuto dbMarca in dbContext.MarcaAutos)
             {
-                adminViewModel.Marca = marcaAuto.Marca;
+                marcaList.Add(MapDbObjectToModel(dbMarca));
             }
-
-            return null;
+            return marcaList;
         }
 
-        //insert ModelAuto
+        //insert MarcaAuto
         public void InsertMarcaAuto(MarcaAutoModel marcaAutoModel)
         {
             //generate new guid id
@@ -74,6 +70,33 @@ namespace AUTOsrs.Repository
             //add to orm layer
             dbContext.MarcaAutos.InsertOnSubmit(MapModelsToDbObject(marcaAutoModel));
             dbContext.SubmitChanges();
+        }
+
+        //update MarcaAuto
+        public void UpdateMarcaAuto(MarcaAutoModel marcaAutoModel)
+        {
+            //add to orm layer
+            MarcaAuto marcaexistenta = dbContext.MarcaAutos.FirstOrDefault(x => x.ID_Marca == marcaAutoModel.ID_Marca);
+            marcaexistenta.Marca = marcaAutoModel.Marca;
+
+            dbContext.SubmitChanges();
+        }
+
+        //delete MarcaAuto
+        public void DeleteMarcaAuto(Guid id)
+        {
+            dbContext.MarcaAutos.DeleteOnSubmit(dbContext.MarcaAutos.FirstOrDefault(x => x.ID_Marca == id));
+            dbContext.SubmitChanges();
+        }
+
+        public List<MarcaAutoModel> GetAll(Guid marcaAutoID)
+        {
+            List<MarcaAutoModel> anuntList = new List<MarcaAutoModel>();
+            foreach (MarcaAuto dbMarca in dbContext.MarcaAutos)
+            {
+                anuntList.Add(MapDbObjectToModel(dbMarca));
+            }
+            return anuntList;
         }
     }
 }

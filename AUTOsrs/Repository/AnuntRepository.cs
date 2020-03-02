@@ -116,7 +116,7 @@ namespace AUTOsrs.Repository
             if (anuntModel != null)
             {
                 dbAnuntModel.ID_Anunt = anuntModel.ID_Anunt;
-                //dbAnuntModel.ID_Caracteristica = anuntModel.ID_Caracteristica;
+                //dbAnuntModel.ID_fCaracteristica = anuntModel.ID_Caracteristica;
                 //dbAnuntModel.ID_User = anuntModel.ID_User;
                 //dbAnuntModel.ID_Model = anuntModel.ID_Model;
                 dbAnuntModel.KM = anuntModel.KM;

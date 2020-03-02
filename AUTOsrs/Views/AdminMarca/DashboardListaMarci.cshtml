@@ -1,0 +1,43 @@
+﻿@model IEnumerable<AUTOsrs.Models.MarcaAutoModel>
+
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista Marci</h2>
+
+<p>
+    @Html.ActionLink("Create New", "DashboardCreareMarca")
+</p>
+<table class="table asd">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditMarca", new { id = item.ID_Marca }) |
+                @Html.ActionLink("Delete", "DeleteMarca", new {  id=item.ID_Marca  })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

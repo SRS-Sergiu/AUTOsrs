@@ -29,14 +29,15 @@ namespace AUTOsrs.Repository
          */
 
         //get all the resources
-        //public List<ModelAuto> GettAllModelAuto()
-        //{
-        //    List<ModelAuto> modelAutoList = new List<ModelAuto>();
-        //    foreach(Models.DbObjects.ModelAuto dbModelAuto in dbContext.ModelAutos)
-        //    {
-        //        modelAutoList.Add(MapDbObjectToModel(dbModelAuto));
-        //    }
-        //}
+        public List<ModelAutoModel> GetAllModel()
+        {
+            List<ModelAutoModel> modelAutoList = new List<ModelAutoModel>();
+            foreach (ModelAuto dbMarca in dbContext.ModelAutos)
+            {
+                modelAutoList.Add(MapDbObjectToModel(dbMarca));
+            }
+            return modelAutoList;
+        }
 
         //get all the ModelAuto by id
         public ModelAutoModel GetModelAutoByID(Guid ID)
@@ -62,6 +63,7 @@ namespace AUTOsrs.Repository
             {
                 //map updated values with keeping the orm reference
                 existingModel.ID_Model = modelAutoModel.ID_Model;
+                existingModel.ID_Marca = modelAutoModel.ID_Marca;
                 existingModel.Model = modelAutoModel.Model;
                 dbContext.SubmitChanges();
             }
@@ -85,6 +87,7 @@ namespace AUTOsrs.Repository
             if (dbModelAuto != null)
             {
                 modelAuto.ID_Model = dbModelAuto.ID_Model;
+                modelAuto.ID_Marca = dbModelAuto.ID_Marca;
                 modelAuto.Model = dbModelAuto.Model;
 
                 return modelAuto;
@@ -99,6 +102,7 @@ namespace AUTOsrs.Repository
             if(dbModelAutoModel != null)
             {
                 dbModelAutoModel.ID_Model = modelAuto.ID_Model;
+                dbModelAutoModel.ID_Marca = modelAuto.ID_Marca;
                 dbModelAutoModel.Model = modelAuto.Model;
 
                 return dbModelAutoModel;
@@ -108,18 +112,18 @@ namespace AUTOsrs.Repository
 
 
         //viewModel
-        public AdminViewModel GetAdmin(Guid modelAutoID)
-        {
-            AdminViewModel adminViewModel = new AdminViewModel();
+        //public AdminMarcaViewModel GetAdmin(Guid modelAutoID)
+        //{
+        //    AdminMarcaViewModel adminMarcaViewModel = new AdminMarcaViewModel();
 
-            ModelAuto modelAuto = dbContext.ModelAutos.FirstOrDefault(x => x.ID_Model == modelAutoID);
+        //    ModelAuto modelAuto = dbContext.ModelAutos.FirstOrDefault(x => x.ID_Model == modelAutoID);
 
-            if(modelAuto != null)
-            {
-                adminViewModel.Model = modelAuto.Model;
-            }
+        //    if(modelAuto != null)
+        //    {
+        //        adminMarcaViewModel.Model = modelAuto.Model;
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
     }
 }
