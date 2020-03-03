@@ -1,0 +1,38 @@
+﻿@model AUTOsrs.ViewModels.AdminCaracteristiciViewModel
+
+
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Adaugare Model</h2>
+
+@using (Html.BeginForm("SaveCaracteristica", "AdminCaracteristica", FormMethod.Post))
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID_Caracteristica)
+    <div class="form-group">
+        @Html.DropDownListFor(model => model.ID_TipCaracteristica, new SelectList(Model.TipCaracteristici1, "ID_TipCaracteristica", "NumeTipCaracteristica"))
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumeCaracteristica1, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NumeCaracteristica1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NumeCaracteristica1, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+    
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

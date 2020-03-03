@@ -42,7 +42,7 @@ namespace AUTOsrs.Controllers
         }
 
 
-        public ActionResult DashboardListaTipCaracteristici()
+        public ActionResult DashboardListaTipCaracteristica()
         {
             List<Models.TipCaracteristicaModel> tipCaract = tipCaracteristicaRepository.GetAllTipCaracteristica();
 

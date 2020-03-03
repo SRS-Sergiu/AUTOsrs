@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AUTOsrs.Models.CaracteristiciModel>
+
+
+@{
+    ViewBag.Title = "Caracteristici";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista Caracteristici</h2>
+
+<p>
+    @Html.ActionLink("Create New", "DashboardCreareCaracteristica")
+</p>
+<table class="table asd">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeCaracteristica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeTipCaracteristica)
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeCaracteristica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeTipCaracteristica)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditCaracteristica", new { id = item.ID_Caracteristica }) |
+                @Html.ActionLink("Delete", "DeleteCaracteristici", new { id = item.ID_Caracteristica })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

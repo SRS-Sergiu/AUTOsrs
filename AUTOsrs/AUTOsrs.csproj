@@ -292,10 +292,10 @@
     <Content Include="Views\AdminMarca\DashboardListaMarci.cshtml" />
     <Content Include="Views\AdminModel\DashboardCreareModel.cshtml" />
     <Content Include="Views\AdminModel\DashboardListaModele.cshtml" />
-    <Content Include="Views\AdminTipCaracteristica\CreareTipCaracteristica.cshtml" />
-    <Content Include="Views\AdminTipCaracteristica\AfisiareTipCaracteristica.cshtml" />
-    <Content Include="Views\AdminCaracteristica\AfisiareCaracteristica.cshtml" />
-    <Content Include="Views\AdminCaracteristica\CreareCaracteristica.cshtml" />
+    <Content Include="Views\AdminTipCaracteristica\DashboardCreareTipCaracteristica.cshtml" />
+    <Content Include="Views\AdminTipCaracteristica\DashboardListaTipCaracteristica.cshtml" />
+    <Content Include="Views\AdminCaracteristica\DashboardListaCaracteristici.cshtml" />
+    <Content Include="Views\AdminCaracteristica\DashboardCreareCaracteristica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
