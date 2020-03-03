@@ -182,6 +182,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminTipCaracteristicaController.cs" />
+    <Compile Include="Controllers\AdminCaracteristicaController.cs" />
     <Compile Include="Controllers\AdminModelController.cs" />
     <Compile Include="Controllers\AdminMarcaController.cs" />
     <Compile Include="Controllers\AnuntController.cs" />
@@ -212,6 +214,7 @@
     <Compile Include="Repository\TipCaracteristicaRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AdminCaracteristiciViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +292,10 @@
     <Content Include="Views\AdminMarca\DashboardListaMarci.cshtml" />
     <Content Include="Views\AdminModel\DashboardCreareModel.cshtml" />
     <Content Include="Views\AdminModel\DashboardListaModele.cshtml" />
+    <Content Include="Views\AdminTipCaracteristica\CreareTipCaracteristica.cshtml" />
+    <Content Include="Views\AdminTipCaracteristica\AfisiareTipCaracteristica.cshtml" />
+    <Content Include="Views\AdminCaracteristica\AfisiareCaracteristica.cshtml" />
+    <Content Include="Views\AdminCaracteristica\CreareCaracteristica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

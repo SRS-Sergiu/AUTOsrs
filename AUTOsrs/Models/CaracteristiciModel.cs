@@ -7,8 +7,10 @@ namespace AUTOsrs.Models
 {
     public class CaracteristiciModel
     {
-        public int ID_Caracteristica { get; set; }
+
+        public Guid ID_TipCaracteristica { get; set; }
+        public Guid ID_Caracteristica { get; set; }
+        public string NumeTipCaracteristica { get; set; }
         public string NumeCaracteristica { get; set; }
-        public int ID_TipCaracteristica { get; set; }
     }
 }
