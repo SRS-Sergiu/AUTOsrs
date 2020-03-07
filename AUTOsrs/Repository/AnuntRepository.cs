@@ -24,6 +24,16 @@ namespace AUTOsrs.Repository
             this.dbContext = dbContext;
         }
 
+
+
+
+        // get all the Anunt by id
+        public AnuntModel GetAnuntByID(Guid ID)
+        {
+            return MapDbObjectToModel(dbContext.Anunts.FirstOrDefault(x => x.ID_Anunt == ID));
+        }
+
+
         // gett all the resources
         public List<AnuntModel> GetAllAnunt()
         {

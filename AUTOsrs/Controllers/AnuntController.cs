@@ -1,4 +1,5 @@
 ﻿using AUTOsrs.Repository;
+using AUTOsrs.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,26 +62,16 @@ namespace AUTOsrs.Controllers
         }
 
         // GET: Anunt/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditAnunt(Guid ID)
         {
-            return View();
+            AnuntModel anuntModel = anuntRepository.GetAnuntByID(ID);
+
+            anuntModel.ID_Anunt = ID;
+
+            return View("ListaAnunturi", anuntModel);
         }
 
-        // POST: Anunt/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: Anunt/Delete/5
         public ActionResult Delete(int id)

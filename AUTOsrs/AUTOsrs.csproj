@@ -216,6 +216,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AdminCaracteristiciViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\AnuntViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\AUTOsrs.mdf" />

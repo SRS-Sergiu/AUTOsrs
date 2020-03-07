@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table asd">
+<table class="table asd">   
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.KM)
@@ -21,9 +21,9 @@
         <th>
             @Html.DisplayNameFor(model => model.AnFabricatie)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Descriere)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -40,11 +40,11 @@
     <td>
         @Html.DisplayFor(modelItem => item.Descriere)
     </td>
-    <td>
+    @*<td>
         @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-    </td>
+    </td>*@
 </tr>
     }
 

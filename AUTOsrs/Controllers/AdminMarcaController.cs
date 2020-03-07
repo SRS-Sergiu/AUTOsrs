@@ -43,7 +43,7 @@ namespace AUTOsrs.Controllers
 
         public ActionResult DashboardListaMarci()
         {
-            //incarcam lista de anunturi
+            //incarcam lista de marci
             List<Models.MarcaAutoModel> marci = marcaAutoRepository.GetAllMarca();
 
             return View("DashboardListaMarci", marci);

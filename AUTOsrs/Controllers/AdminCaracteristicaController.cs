@@ -69,7 +69,7 @@ namespace AUTOsrs.Controllers
             model.NumeCaracteristica1 = Model.NumeCaracteristica;
             model.ID_TipCaracteristica = Model.ID_TipCaracteristica;
 
-            return View("DashboardCreareCaracteristici", model);
+            return View("DashboardListaCaracteristici", model);
         }
 
         // GET: Admin/Delete/5
