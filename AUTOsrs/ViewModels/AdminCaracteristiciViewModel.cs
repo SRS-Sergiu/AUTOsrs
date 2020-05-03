@@ -22,5 +22,12 @@ namespace AUTOsrs.ViewModels
         public List<TipCaracteristicaModel> TipCaracteristici1 { get; set; }
     }
 
+
+
+
+
+
+
+
     
 }

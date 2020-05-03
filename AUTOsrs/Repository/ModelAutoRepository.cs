@@ -32,6 +32,7 @@ namespace AUTOsrs.Repository
         public List<ModelAutoModel> GetAllModel()
         {
             List<ModelAutoModel> modelAutoList = new List<ModelAutoModel>();
+
             foreach (ModelAuto dbMarca in dbContext.ModelAutos)
             {
                 modelAutoList.Add(MapDbObjectToModel(dbMarca));
@@ -44,6 +45,10 @@ namespace AUTOsrs.Repository
         {
             return MapDbObjectToModel(dbContext.ModelAutos.FirstOrDefault(x => x.ID_Model == ID));
         }
+
+
+
+
         //insert ModelAuto
         public void InsertModelAuto(ModelAutoModel modelAutoModel)
         {
@@ -54,6 +59,9 @@ namespace AUTOsrs.Repository
             dbContext.ModelAutos.InsertOnSubmit(MapModelsToDbObject(modelAutoModel));
             dbContext.SubmitChanges();
         }
+
+
+
         //update
         public void UpdateModelAuto(ModelAutoModel modelAutoModel)
         {
@@ -68,6 +76,10 @@ namespace AUTOsrs.Repository
                 dbContext.SubmitChanges();
             }
         }
+
+
+
+
         //delete
         public void DeleteModelAuto(Guid ID)
         {
@@ -84,7 +96,7 @@ namespace AUTOsrs.Repository
 
 
         // map orm to model - mapper method
-        private ModelAutoModel MapDbObjectToModel(Models.DbObjects.ModelAuto dbModelAuto)
+        private ModelAutoModel MapDbObjectToModel(ModelAuto dbModelAuto)
         {
             ModelAutoModel modelAuto = new ModelAutoModel();
 

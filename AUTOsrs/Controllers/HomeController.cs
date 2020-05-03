@@ -12,7 +12,12 @@ namespace AUTOsrs.Controllers
         {
             return View();
         }
+        //public ActionResult Index()
+        //{
+        //    string physicalWebRootPath = Server.MapPath("~/");
 
+        //    return Content(physicalWebRootPath);
+        //}
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -26,5 +31,6 @@ namespace AUTOsrs.Controllers
 
             return View();
         }
+    
     }
 }

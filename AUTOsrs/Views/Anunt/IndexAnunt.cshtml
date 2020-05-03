@@ -1,0 +1,178 @@
+﻿@model IEnumerable<AUTOsrs.Models.AnuntModel>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<div class="list_products_page">
+  
+
+    <div class="container">
+
+        <div class="col-xs-3 car_search">
+            <div class="car_search_top">
+                <div class="car_search_img">
+                    <img src="~/Content/img/car_search.svg" alt="" />
+                </div>
+                <h1>Search Options</h1>
+            </div>
+            <div class="car_search_body">
+                <div class="car_search_select">
+                    <form action="">
+                        <label for="cars">Alege transmisia:</label>
+                        <div><input class="search_input" type="radio" name="transmisia" value="Automata"> <span>Automata</span></div>
+                        <div><input class="search_input" type="radio" name="transmisia" value="Manuala"> <span>Manuala</span></div>
+                        <div><input class="search_input" type="radio" name="transmisia" value="Semi-automata"> <span>Semi-automata</span></div>
+                    </form>
+                </div>
+                <div class="car_search_select">
+                    <form action="">
+                        <label for="cars">Alege tractiunea:</label>
+                        <div><input class="search_input" type="radio" name="tractiunea" value="4x4"> <span>4x4</span></div>
+                        <div><input class="search_input" type="radio" name="tractiunea" value="2x4"> <span>2x4</span></div>
+                    </form>
+                </div>
+                <div class="car_search_select">
+                    <form action="">
+                        <label for="cars">Alege combustibil:</label>
+                        <div><input class="search_input" type="radio" name="combustibil" value="Electrica"> <span>Electrica</span></div>
+                        <div><input class="search_input" type="radio" name="combustibil" value="Diesel"> <span>Diesel</span></div>
+                        <div><input class="search_input" type="radio" name="combustibil" value="Benzina"> <span>Benzina</span></div>
+                        <div><input class="search_input" type="radio" name="combustibil" value="Gaz"> <span>Gaz</span></div>
+                    </form>
+                </div>
+                <div class="car_search_select car_search_select1">
+                    <form action="">
+                        <label for="cars">Alege pret:</label>
+                        <div class="slidecontainer">
+                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        </div> 
+                    </form>
+                </div>
+            </div>
+            <div class="car_search_body"></div>
+        </div>
+
+        <div class="col-xs-9 carsList_container">
+            <div class="carList_order">
+                <div class="carList_sorter">
+                    <span>Sort By:</span>
+                    <select>
+                        <option>Data: cea mai noua</option>
+                        <option>Data: cea mai veche</option>
+                        <option>Pret: crescator</option>
+                        <option>Pret: descrescator</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+
+            @foreach (var item in Model)
+            {
+                <div class="carList_item">
+
+
+
+                                <div class="car_img">
+                                    <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt">
+                                        <img class="byDefault_carList" src="~/File/AnuntFile?ID=@item.ID_Anunt" alt="" />
+                                    </a>
+                                  
+                                </div>
+
+
+
+
+                    <div class="car_content">
+                        <div class="car_content_section1">
+                            <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt">
+                                <div class="car_title">
+
+                                    <div class="car_title1">@Html.DisplayFor(modelItem => item.Marca)</div>
+                                    <div class="car_title2">@Html.DisplayFor(modelItem => item.Model)</div>
+
+                                </div>
+                            </a>
+                            <div class="car_price">
+                                @Html.DisplayFor(modelItem => item.Pret)
+                            </div>
+                        </div>
+                        <div class="car_content_section2">
+                            <div class="car_description">
+                                <div class="car_description1">
+                                    <div class="car_descriptioN_IMG">
+                                        <img src="~/Content/img/road.svg" alt="" />
+                                    </div>
+                                    <div class="car_descriptioN_tip">km</div>
+                                </div>
+                                <div class="car_description2">
+                                    @Html.DisplayFor(modelItem => item.KM)
+                                </div>
+
+                            </div>
+                            <div class="car_description car_descriptionA">
+                                <div class="car_description1">
+                                    <div class="car_descriptioN_IMG">
+                                        <img src="~/Content/img/car.svg" alt="" />
+                                    </div>
+                                    <div class="car_descriptioN_tip">an</div>
+                                </div>
+                                <div class="car_description2">
+                                    @Html.DisplayFor(modelItem => item.AnFabricatie)
+                                </div>
+
+                            </div>
+                            <div class="car_description car_descriptionB">
+                                <div class="car_description1">
+                                    <div class="car_descriptioN_IMG">
+                                        <img src="~/Content/img/gas-station.svg" alt="" />
+                                    </div>
+                                    <div class="car_descriptioN_tip">Caracteristica</div>
+                                </div>
+                                <div class="car_description2">
+                                    @Html.DisplayFor(modelItem => item.NumeCaracteristica)
+                                </div>
+
+                            </div>
+                            <div class="car_description">
+                                <div class="car_description1">
+                                    <div class="car_descriptioN_IMG">
+                                        <img src="~/Content/img/support.svg" alt="" />
+                                    </div>
+                                    <div class="car_descriptioN_tip">Tip Caracteristica</div>
+                                </div>
+                                <div class="car_description2">
+                                    @Html.DisplayFor(modelItem => item.NumeTipCaracteristica)
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="productsList_descriereScurta">
+                            @Html.DisplayFor(modelItem => item.DescriereScurta)
+                        </div>
+
+                        <div class="car_btn">
+                            <a href="/contact" class="car_btn_contact btn_srs">Contacteaza-ne</a>
+                            <a href="/cere_oferta" class=" car_btn_offer btn_srs">Cere Oferta</a>
+                            <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt" class=" car_btn_offer btn_srs">Vezi Detalii</a>
+                        </div>
+                    </div>
+                  
+
+
+
+
+
+
+
+
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

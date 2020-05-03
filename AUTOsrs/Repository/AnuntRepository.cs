@@ -1,9 +1,9 @@
 ﻿using AUTOsrs.Models;
 using AUTOsrs.Models.DbObjects;
+using AUTOsrs.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace AUTOsrs.Repository
 {
@@ -32,18 +32,26 @@ namespace AUTOsrs.Repository
         {
             return MapDbObjectToModel(dbContext.Anunts.FirstOrDefault(x => x.ID_Anunt == ID));
         }
+        // get all the Anunt by id
+        public DetailsAnuntViewModel GetAnuntByIDImg(Guid ID)
+        {
+            return MapDbObjectToModelIMG(dbContext.Anunts.FirstOrDefault(x => x.ID_Anunt == ID));
+        }
 
 
         // gett all the resources
         public List<AnuntModel> GetAllAnunt()
         {
             List<AnuntModel> anuntList = new List<AnuntModel>();
+
             foreach (Models.DbObjects.Anunt dbAnunt in dbContext.Anunts)
             {
                 anuntList.Add(MapDbObjectToModel(dbAnunt));
             }
+            
             return anuntList;
         }
+
 
 
         //insert (nu renutrneaza nimic folosim void)
@@ -69,13 +77,15 @@ namespace AUTOsrs.Repository
                 //map update values si pastram referintele orm
 
                 existingAnunt.ID_Anunt = anuntModel.ID_Anunt;
-                existingAnunt.ID_User = anuntModel.ID_User;
-                ///existingAnunt.ID_Model = anuntModel.ID_Model;
-                ////////////////////////existingAnunt.ID_Caracteristica = anuntModel.ID_Caracteristica;
+                //existingAnunt.ID_User = anuntModel.ID_User;
+                existingAnunt.ID_Model = anuntModel.ID_Model;
+                existingAnunt.ID_Caracteristica = anuntModel.ID_Caracteristica;
                 existingAnunt.KM = anuntModel.KM;
                 existingAnunt.AnFabricatie = anuntModel.AnFabricatie;
                 existingAnunt.Descriere = anuntModel.Descriere;
+                existingAnunt.DescriereScurta = anuntModel.DescriereScurta;
                 existingAnunt.Pret = anuntModel.Pret;
+               
 
                 dbContext.SubmitChanges();
             }
@@ -98,7 +108,7 @@ namespace AUTOsrs.Repository
 
 
         // map ORM to Model - mapper method
-        private AnuntModel MapDbObjectToModel(Models.DbObjects.Anunt dbAnunt)
+        private AnuntModel MapDbObjectToModel(Anunt dbAnunt)
         {
             AnuntModel anuntModel = new AnuntModel();
 
@@ -106,34 +116,99 @@ namespace AUTOsrs.Repository
             {
                 anuntModel.ID_Anunt = dbAnunt.ID_Anunt;
                 anuntModel.ID_User = dbAnunt.ID_User;
-                //anuntModel.ID_Model = dbAnunt.ID_Model;
-                //anuntModel.ID_Caracteristica = dbAnunt.ID_Caracteristica;
+                anuntModel.ID_Model = dbAnunt.ID_Model;
+                anuntModel.ID_Marca = dbAnunt.ID_Marca;
+                anuntModel.ID_TipCaracteristica = dbAnunt.ID_TipCaracteristica;
+                anuntModel.ID_Caracteristica = dbAnunt.ID_Caracteristica;
                 anuntModel.KM = dbAnunt.KM;
                 anuntModel.AnFabricatie = dbAnunt.AnFabricatie;
                 anuntModel.Descriere = dbAnunt.Descriere;
+                anuntModel.DescriereScurta = dbAnunt.DescriereScurta;
                 anuntModel.Pret = dbAnunt.Pret;
+               
 
                 return anuntModel;
             }
             return null;
         }
 
-        // map Model to ORM - mapper method
-        private Models.DbObjects.Anunt MapModelToDbObject(AnuntModel anuntModel)
+
+
+
+
+
+        private DetailsAnuntViewModel MapDbObjectToModelIMG(Anunt dbAnunt)
         {
-            Models.DbObjects.Anunt dbAnuntModel = new Models.DbObjects.Anunt();
+            DetailsAnuntViewModel detailsAnunt = new DetailsAnuntViewModel();
+
+            if (dbAnunt != null)
+            {
+                detailsAnunt.ID_Anunt = dbAnunt.ID_Anunt;
+
+                detailsAnunt.KM = dbAnunt.KM;
+                detailsAnunt.AnFabricatie = dbAnunt.AnFabricatie;
+                detailsAnunt.Descriere = dbAnunt.Descriere;
+                detailsAnunt.DescriereScurta = dbAnunt.DescriereScurta;
+                detailsAnunt.Pret = dbAnunt.Pret;
+
+                 MarcaAutoRepository marcaAutoRepository = new Repository.MarcaAutoRepository();
+                 MarcaAutoModel marca = marcaAutoRepository.GetMarcaAutoByID(dbAnunt.ID_Marca);
+                if (marca != null)
+                {
+                    detailsAnunt.Marca = marca.Marca;
+                }
+                ModelAutoRepository modelAutoRepository = new Repository.ModelAutoRepository();
+                ModelAutoModel model = modelAutoRepository.GetModelAutoByID(dbAnunt.ID_Model);
+                if (model != null)
+                {
+                    detailsAnunt.Model = model.Model;
+                }
+                TipCaracteristicaRepository tipCaracteristica = new TipCaracteristicaRepository();
+                TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristica.GetTipCaracteristicaByID(dbAnunt.ID_TipCaracteristica);
+                if (tipCaracteristicaModel != null)
+                {
+                    detailsAnunt.NumeTipCaracteristica = tipCaracteristicaModel.NumeTipCaracteristica;
+                }
+                CaracteristiciRepository caracteristicaRepo = new CaracteristiciRepository();
+                CaracteristiciModel caracteristicaModel = caracteristicaRepo.GetCaracteristiciModelByID(dbAnunt.ID_Caracteristica);
+                if (caracteristicaModel != null)
+                {
+                    detailsAnunt.NumeTipCaracteristica = caracteristicaModel.NumeTipCaracteristica;
+                }
+
+                CarImgRepository carImgRepository = new CarImgRepository();
+                List<CarImgModel> listaImg = carImgRepository.GetAllCarImgByAnunt(dbAnunt.ID_Anunt);
+
+                if (listaImg != null)
+                {
+                    detailsAnunt.Photos = listaImg;
+                }
+
+
+
+                return detailsAnunt;
+            }
+            return null;
+        }
+        // map Model to ORM - mapper method
+        private Anunt MapModelToDbObject(AnuntModel anuntModel)
+        {
+           Anunt dbAnuntModel = new Anunt();
 
             if (anuntModel != null)
             {
                 dbAnuntModel.ID_Anunt = anuntModel.ID_Anunt;
-                //dbAnuntModel.ID_fCaracteristica = anuntModel.ID_Caracteristica;
-                //dbAnuntModel.ID_User = anuntModel.ID_User;
-                //dbAnuntModel.ID_Model = anuntModel.ID_Model;
+                dbAnuntModel.ID_Caracteristica = anuntModel.ID_Caracteristica;
+                dbAnuntModel.ID_TipCaracteristica = anuntModel.ID_TipCaracteristica;
+                dbAnuntModel.ID_User = anuntModel.ID_User;
+                dbAnuntModel.ID_Model = anuntModel.ID_Model;
+                dbAnuntModel.ID_Marca = anuntModel.ID_Marca;
                 dbAnuntModel.KM = anuntModel.KM;
                 dbAnuntModel.Descriere = anuntModel.Descriere;
+                dbAnuntModel.DescriereScurta = anuntModel.DescriereScurta;
                 dbAnuntModel.Pret = anuntModel.Pret;
                 dbAnuntModel.AnFabricatie = anuntModel.AnFabricatie;
-
+                
                 return dbAnuntModel;
             }
             return null;

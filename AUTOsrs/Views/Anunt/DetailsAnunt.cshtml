@@ -1,0 +1,90 @@
+﻿@model AUTOsrs.ViewModels.DetailsAnuntViewModel
+
+@{
+    ViewBag.Title = "DetailsAnunt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+
+
+<div class="productPage">
+
+    <div class="productPage1">
+        <div class="col-xs-7 productPage_imgSection">
+            @foreach (var photo in Model.Photos)
+            {
+                <img class="productPageImg" src="~/File/AnuntMultipleFile?ID=@photo.ID_CarImg" alt="" />
+            }
+        </div>
+        <div class="col-xs-5 productPage_detailsSection">
+
+            <div class="productTitle">
+                <div class="productTitleModel">
+                    @Html.DisplayFor(model => model.Marca)
+                </div>
+                <div class="productTitleMarca">
+                    @Html.DisplayFor(model => model.Model)
+                </div>
+            </div>
+            <div class="productTxtSection1">
+                <div class="productPret productDetails1">
+                    <div class="productPret1">@Html.DisplayNameFor(model => model.Pret):</div>
+                    <div class="productPret2">@Html.DisplayFor(model => model.Pret) <span>e</span></div>
+
+                </div>
+                <div class="productAn productDetails1">
+                    <div class="productAn1"> @Html.DisplayNameFor(model => model.AnFabricatie):</div>
+                    <div class="productAn2"> @Html.DisplayFor(model => model.AnFabricatie)</div>
+
+                </div>
+
+                <div class="productKm productDetails1">
+                    <div class="productKm1">@Html.DisplayNameFor(model => model.KM):</div>
+                    <div class="productKm2">@Html.DisplayFor(model => model.KM)</div>
+                </div>
+            </div>
+
+            <div class="btn_section">
+                <div class="car_btn">
+                    <a href="/cere_oferta" class=" car_btn_offer btn_srs" style="margin-right: 15px;">Cere Oferta</a>
+                    <a href="tel: 0745672523" class="car_btn_contact btn_srs"><i class="fa fa-phone" style="margin-right: 5px;"></i>0745672523</a>
+                </div>
+            </div>
+
+            <div class="productTxtSection2">
+                @Html.DisplayFor(model => model.DescriereScurta)
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="productPage2">
+
+
+
+
+
+        <div class="productCaracteristici">
+
+            <div class="productTipCaract"> @Html.DisplayFor(model => model.NumeTipCaracteristica)</div>
+            <div class="productCaract"> @Html.DisplayFor(model => model.NumeCaracteristica)</div>
+        </div>
+
+
+
+        <div class="productDescription">
+            <div class="productTxtSection2">
+                @Html.DisplayFor(model => model.Descriere)
+            </div>
+        </div>
+    </div>
+</div>

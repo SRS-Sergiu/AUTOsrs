@@ -14,12 +14,14 @@ namespace AUTOsrs.Controllers
 
 
         // GET: Admin
+        [HttpGet]
         public ActionResult DashboardCreareMarca()
         {
             return View();
         }
 
         //Post: Admin/SaveMarca/5
+        [HttpPost]
         public ActionResult SaveMarca(AdminMarcaViewModel model)
         {
             if (model.ID_Marca != Guid.Empty)
@@ -45,7 +47,6 @@ namespace AUTOsrs.Controllers
         {
             //incarcam lista de marci
             List<Models.MarcaAutoModel> marci = marcaAutoRepository.GetAllMarca();
-
             return View("DashboardListaMarci", marci);
         }
 

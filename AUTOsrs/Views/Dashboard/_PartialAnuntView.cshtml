@@ -1,0 +1,129 @@
+﻿@model AUTOsrs.Models.AnuntModel
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Anunt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_User)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Caracteristica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pret)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnFabricatie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descriere)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriereScurta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_TipCaracteristica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeTipCaracteristica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeCaracteristica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Anunt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_User)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Caracteristica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pret)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnFabricatie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descriere)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriereScurta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Marca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_TipCaracteristica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeTipCaracteristica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeCaracteristica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

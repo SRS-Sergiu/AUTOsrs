@@ -1,0 +1,72 @@
+﻿
+<div class="top_nav ">
+    <div class="container">
+        <div class="navbar-header col-sm-2 top_nav_left">
+            <a href="/">
+                <div class="top_nav_left1"></div>
+            </a>
+        </div>
+        <div class="top_nav_right">
+            <div class="top_nav_right1">
+                <div class="tNav_right_img"><i class="fa fa-phone-volume"></i></div>
+                <div class="tNav_right_text">
+                    <div class="tNav_right_text1">Call Us Now</div>
+                    <div class="tNav_right_text2">+407 4567 2523</div>
+                </div>
+            </div>
+            <div class="top_nav_right2">
+                <div class="tNav_right_img tNav_right_img2"><i class="fa fa-stopwatch"></i></div>
+                <div class="tNav_right_text">
+                    <div class="tNav_right_text1">Opening Hours</div>
+                    <div class="tNav_right_text2">Mon - Sat 9:00 - 19:00</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="mid_nav">
+    <div class="navbar navbar-inverse ">
+        <div class="container ">
+
+            <div class="navbar-collapse collapse mid_nav_right mid_nav1">
+                <ul class="nav navbar-nav">
+                    @*<li> @Html.ActionLink("MarciAuto", "DashboardListaMarci", "AdminMarca")</li>*@
+                    @*<li> @Html.ActionLink("ModeleAuto", "DashboardListaModele", "AdminModel")</li>*@
+                    @*<li> @Html.ActionLink("TipCaracteristici", "DashboardListaTipCaracteristica", "AdminTipCaracteristica")</li>*@
+                    @*<li> @Html.ActionLink("Caracteristici", "DashboardListaCaracteristici", "AdminCaracteristica")</li>*@
+                    <li><a href="/Pages/servicii1.html">Servicii</a></li>
+                    <li>@Html.ActionLink("Despre noi", "DespreNoiPage", "DespreNoiPage")</li>
+                    <li>@Html.ActionLink("Vezi anunturi", "IndexAnunt", "Anunt")</li>
+                    <li>@Html.ActionLink("Adauga anunt", "CreateAnunt", "Anunt")</li>
+                    <li>@Html.ActionLink("Contact", "ContactPage", "ContactPage")</li>
+                </ul>
+                <div class="mid_nav_social">
+                    <div class="mid_nav_social1">
+                        <a href="/facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="/insta"><i class="fa fa-instagram"></i></a>
+                        <a href="tel: 0745672523"><i class="fa fa-phone"></i></a>
+                        <a href="mailto: robbertsergiu@gmail.com"><i class="fa fa-envelope"></i></a>
+
+                        @Html.Partial("_LoginPartial")
+                    </div>
+
+                </div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="text_banner">
+            <h1>Auto <span>srs</span></h1>
+        </div>
+    </div>
+</div>

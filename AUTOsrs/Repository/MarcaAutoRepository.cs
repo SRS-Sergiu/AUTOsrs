@@ -26,10 +26,14 @@ namespace AUTOsrs.Repository
             return MapDbObjectToModel(dbContext.MarcaAutos.FirstOrDefault(x => x.ID_Marca == ID));
         }
 
-        private MarcaAutoModel MapDbObjectToModel(Models.DbObjects.MarcaAuto dbMarcaAuto)
+
+
+
+        private MarcaAutoModel MapDbObjectToModel(MarcaAuto dbMarcaAuto)
         {
             MarcaAutoModel marcaAuto = new MarcaAutoModel();
-            if(marcaAuto != null)
+
+            if(dbMarcaAuto != null)
             {
                 marcaAuto.ID_Marca = dbMarcaAuto.ID_Marca;
                 marcaAuto.Marca = dbMarcaAuto.Marca;
@@ -41,7 +45,8 @@ namespace AUTOsrs.Repository
 
         private MarcaAuto MapModelsToDbObject(MarcaAutoModel marcaAuto)
         {
-            Models.DbObjects.MarcaAuto dbMarcaAutoModel = new Models.DbObjects.MarcaAuto();
+            MarcaAuto dbMarcaAutoModel = new MarcaAuto();
+
             if(dbMarcaAutoModel != null)
             {
                 dbMarcaAutoModel.Marca = marcaAuto.Marca;
@@ -54,12 +59,21 @@ namespace AUTOsrs.Repository
         public List<MarcaAutoModel> GetAllMarca()
         {
             List<MarcaAutoModel> marcaList = new List<MarcaAutoModel>();
-            foreach (Models.DbObjects.MarcaAuto dbMarca in dbContext.MarcaAutos)
+            foreach (MarcaAuto dbMarca in dbContext.MarcaAutos)
             {
                 marcaList.Add(MapDbObjectToModel(dbMarca));
             }
             return marcaList;
         }
+        //public List<MarcaAutoModel> GetAllMarca(List<MarcaAutoModel> marcaAnunt)
+        //{
+        //    List<MarcaAutoModel> marcaList = new List<MarcaAutoModel>();
+        //    foreach (MarcaAuto dbMarca in dbContext.MarcaAutos)
+        //    {
+        //        marcaList.Add(MapDbObjectToModel(dbMarca));
+        //    }
+        //    return marcaList;
+        //}
 
         //insert MarcaAuto
         public void InsertMarcaAuto(MarcaAutoModel marcaAutoModel)
@@ -89,14 +103,14 @@ namespace AUTOsrs.Repository
             dbContext.SubmitChanges();
         }
 
-        public List<MarcaAutoModel> GetAll(Guid marcaAutoID)
-        {
-            List<MarcaAutoModel> anuntList = new List<MarcaAutoModel>();
-            foreach (MarcaAuto dbMarca in dbContext.MarcaAutos)
-            {
-                anuntList.Add(MapDbObjectToModel(dbMarca));
-            }
-            return anuntList;
-        }
+        //public List<MarcaAutoModel> GetAll(Guid marcaAutoID)
+        //{
+        //    List<MarcaAutoModel> anuntList = new List<MarcaAutoModel>();
+        //    foreach (MarcaAuto dbMarca in dbContext.MarcaAutos)
+        //    {
+        //        anuntList.Add(MapDbObjectToModel(dbMarca));
+        //    }
+        //    return anuntList;
+        //}
     }
 }

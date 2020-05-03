@@ -1,0 +1,291 @@
+﻿@model AUTOsrs.ViewModels.DashboardViewModel
+
+
+    <div class="dashboarad_page">
+
+
+
+
+        <header id="header">
+
+            <div class="row">
+                <div class="col-md-10">
+                    <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard <small>Manage Your Site</small></h1>
+                </div>
+                <div class="col-md-2">
+                    <div class="dropdown create">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Create Content
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a data-toggle="modal" data-target="#addPage">Add Page</a></li>
+                            <li><a href="#">Add Post</a></li>
+                            <li><a href="#">Add User</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <nav class="navbar navbar-default">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">AdminStrap</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Dashboard</a></li>
+                    <li><a href="pages.html">Pages</a></li>
+                    <li><a href="posts.html">Posts</a></li>
+                    <li><a href="users.html">Users</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Welcome, Brad</a></li>
+
+                </ul>
+            </div><!--/.nav-collapse -->
+
+        </nav>
+
+
+
+        <section id="main">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="index.html" class="list-group-item active main-color-bg">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
+                        </a>
+                        <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Anunturi utilzatori<span class="badge">@Model.admin_anuntVM.Count()</span></a>
+                        <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Programari <span class="badge">33</span></a>
+                        <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">203</span></a>
+                    </div>
+
+                    <div class="well">
+                        <h4>Disk Space Used</h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                60%
+                            </div>
+                        </div>
+                        <h4>Bandwidth Used </h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                                40%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <!-- Website Overview -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading main-color-bg">
+                            <h3 class="panel-title">Website Overview</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-3">
+                                <div class="well dash-box">
+                                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>@Model.admin_anuntVM.Count()</h2>
+                                    <h4>Anunturi</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="well dash-box">
+                                    <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 12</h2>
+                                    <h4>Pages</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="well dash-box">
+                                    <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 33</h2>
+                                    <h4>Posts</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="well dash-box">
+                                    <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 12,334</h2>
+                                    <h4>Visitors</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Latest Users -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Ultimele Anunturi</h3>
+                        </div>
+                        <div class="panel-body" id="PartialAnutView">
+
+                            @foreach (var item in Model.admin_anuntVM)
+                            {
+                                <div class="carList_item">
+
+
+
+                                    <div class="car_img">
+                                        <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt">
+                                            <img class="byDefault_carList" src="~/File/AnuntFile?ID=@item.ID_Anunt" alt="" />
+                                        </a>
+
+                                    </div>
+
+
+                                   
+
+                                    <div class="car_content">
+                                        <div class="car_content_section1">
+                                            <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt">
+                                                <div class="car_title">
+
+                                                    <div class="car_title1">@Html.DisplayFor(modelItem => item.Marca)</div>
+                                                    <div class="car_title2">@Html.DisplayFor(modelItem => item.Model)</div>
+
+                                                </div>
+                                            </a>
+                                            <div class="car_price">
+                                                @Html.DisplayFor(modelItem => item.Pret)
+                                            </div>
+                                        </div>
+                                        <div class="car_content_section2">
+                                            <div class="car_description">
+                                                <div class="car_description1">
+                                                    <div class="car_descriptioN_IMG">
+                                                        <img src="~/Content/img/road.svg" alt="" />
+                                                    </div>
+                                                    <div class="car_descriptioN_tip">km</div>
+                                                </div>
+                                                <div class="car_description2">
+                                                    @Html.DisplayFor(modelItem => item.KM)
+                                                </div>
+
+                                            </div>
+                                            <div class="car_description car_descriptionA">
+                                                <div class="car_description1">
+                                                    <div class="car_descriptioN_IMG">
+                                                        <img src="~/Content/img/car.svg" alt="" />
+                                                    </div>
+                                                    <div class="car_descriptioN_tip">an</div>
+                                                </div>
+                                                <div class="car_description2">
+                                                    @Html.DisplayFor(modelItem => item.AnFabricatie)
+                                                </div>
+
+                                            </div>
+                                            <div class="car_description car_descriptionB">
+                                                <div class="car_description1">
+                                                    <div class="car_descriptioN_IMG">
+                                                        <img src="~/Content/img/gas-station.svg" alt="" />
+                                                    </div>
+                                                    <div class="car_descriptioN_tip">Caracteristica</div>
+                                                </div>
+                                                <div class="car_description2">
+                                                    @Html.DisplayFor(modelItem => item.NumeCaracteristica)
+                                                </div>
+
+                                            </div>
+                                            <div class="car_description">
+                                                <div class="car_description1">
+                                                    <div class="car_descriptioN_IMG">
+                                                        <img src="~/Content/img/support.svg" alt="" />
+                                                    </div>
+                                                    <div class="car_descriptioN_tip">Tip Caracteristica</div>
+                                                </div>
+                                                <div class="car_description2">
+                                                    @Html.DisplayFor(modelItem => item.NumeTipCaracteristica)
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="productsList_descriereScurta">
+                                            @Html.DisplayFor(modelItem => item.DescriereScurta)
+                                        </div>
+
+                                        <div class="car_btn">
+                                            <a href="/contact" class="car_btn_contact btn_srs">Contacteaza-ne</a>
+                                            <a href="/cere_oferta" class=" car_btn_offer btn_srs">Cere Oferta</a>
+                                            <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt" class=" car_btn_offer btn_srs">Vezi Detalii</a>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+                                </div>
+
+                            }
+                            <hr />
+
+                            <hr />
+                            @{
+                                Html.RenderAction("PartialAnuntView");
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+
+        <!-- Modals -->
+        <!-- Add Page -->
+        <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Add Page</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Page Title</label>
+                                <input type="text" class="form-control" placeholder="Page Title">
+                            </div>
+                            <div class="form-group">
+                                <label>Page Body</label>
+                                <textarea name="editor1" class="form-control" placeholder="Page Body"></textarea>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Published
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Meta Tags</label>
+                                <input type="text" class="form-control" placeholder="Add Some Tags...">
+                            </div>
+                            <div class="form-group">
+                                <label>Meta Description</label>
+                                <input type="text" class="form-control" placeholder="Add Meta Description...">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+

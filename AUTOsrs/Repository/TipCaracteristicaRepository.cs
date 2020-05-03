@@ -17,10 +17,11 @@ namespace AUTOsrs.Repository
         }
 
         //map orm to model
-        private TipCaracteristicaModel MapDBObjectToModel(Models.DbObjects.TipCaracteristica dbTipCaracteristica)
+        private TipCaracteristicaModel MapDBObjectToModel(TipCaracteristica dbTipCaracteristica)
         {
             TipCaracteristicaModel tipCaracteristica = new TipCaracteristicaModel();
-            if(tipCaracteristica != null)
+
+            if(dbTipCaracteristica != null)
             {
                 tipCaracteristica.ID_TipCaracteristica = dbTipCaracteristica.ID_TipCaracteristica;
                 tipCaracteristica.NumeTipCaracteristica = dbTipCaracteristica.NumeTipCaracteristica;

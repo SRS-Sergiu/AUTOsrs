@@ -1,65 +1,155 @@
-﻿using AUTOsrs.Repository;
-using AUTOsrs.Models;
+﻿using AUTOsrs.Models;
+using AUTOsrs.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Configuration;
+using System.IO;
 using System.Web.Mvc;
+using FormCollection = Microsoft.AspNetCore.Http.FormCollection;
 
 namespace AUTOsrs.Controllers
 {
     [System.Runtime.InteropServices.Guid("84131BF5-C248-4834-BF78-CFB8215CBF7F")]
+
     public class AnuntController : Controller
     {
+
+        private Repository.AnuntRepository anuntRepository = new Repository.AnuntRepository();
+        private Repository.CarImgRepository imgRepository = new Repository.CarImgRepository();
+        private Repository.CaracteristiciRepository caracteristiciRepository = new Repository.CaracteristiciRepository();
+        private Repository.TipCaracteristicaRepository tipCaracteristicaRepository = new Repository.TipCaracteristicaRepository();
+        private Repository.ModelAutoRepository modelAutoRepository = new Repository.ModelAutoRepository();
+        private Repository.MarcaAutoRepository marcaAutoRepository = new Repository.MarcaAutoRepository();
+
         //initializam repositori
         //intreaba proful
-        private Repository.AnuntRepository anuntRepository = new Repository.AnuntRepository();
 
+
+        // afisare anunt
         // GET: Anunt
-        public ActionResult Index()
+        public ActionResult IndexAnunt()
         {
-            //incarcam lista de anunturi
-            List<Models.AnuntModel> anunturi = anuntRepository.GetAllAnunt();
+           List<AnuntModel> anunturi = anuntRepository.GetAllAnunt();
+            foreach (var anunt in anunturi)
+            {
+                MarcaAutoModel marcaAutoModel = marcaAutoRepository.GetMarcaAutoByID(anunt.ID_Marca);
+                ModelAutoModel modelAutoModel = modelAutoRepository.GetModelAutoByID(anunt.ID_Model);
+                CaracteristiciModel caracteristiciModel = caracteristiciRepository.GetCaracteristiciModelByID(anunt.ID_Caracteristica);
+                TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristicaRepository.GetTipCaracteristicaByID(anunt.ID_TipCaracteristica);
+                anunt.Marca = marcaAutoModel.Marca;
+                anunt.Model = modelAutoModel.Model;
+                anunt.NumeCaracteristica = caracteristiciModel.NumeCaracteristica;
+                anunt.NumeTipCaracteristica = tipCaracteristicaModel.NumeTipCaracteristica;
+            }
 
-            return View("Index", anunturi);
+            return View("IndexAnunt", anunturi);
+        }
+    
+
+
+
+        public ActionResult DetailsAnunt(string ID)
+        {
+            DetailsAnuntViewModel anunt = anuntRepository.GetAnuntByIDImg(new Guid(ID));
+            return View("DetailsAnunt", anunt);
         }
 
-        // GET: Anunt/Details/5
-        public ActionResult Details(int id)
+
+
+
+        //afisarea paginii unde se creaza anuntul
+        [HttpGet]
+        public ActionResult CreateAnunt()
         {
-            return View();
+            AnuntGeneralViewModel anuntGeneralViewModel = new AnuntGeneralViewModel();
+            anuntGeneralViewModel.ModelAnunt = modelAutoRepository.GetAllModel();
+            anuntGeneralViewModel.MarcaAnunt = marcaAutoRepository.GetAllMarca();
+            anuntGeneralViewModel.CaracteristicaAnunt = caracteristiciRepository.GetAllCaracteristici();
+            anuntGeneralViewModel.TipCaracteristicaAnunt = tipCaracteristicaRepository.GetAllTipCaracteristica();
+
+            return View(anuntGeneralViewModel);
         }
 
-        // GET: Anunt/Create
-        public ActionResult Create()
-        {
-            return View("CreateAnunt");
-        }
+        //public AnuntController(IHostingEnvironment hostingEnvironment)
+        //{
+        //    _hostingEnvironment = hostingEnvironment;
+        //}
+        //private readonly IHostingEnvironment _hostingEnvironment;
 
-        // POST: Anunt/Create
+       
+
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateAnunt(AnuntGeneralViewModel model)
         {
-            try
+            if (model.ID_Anunt != Guid.Empty)
             {
-                //instantiem Modelul
-                Models.AnuntModel anuntModel = new Models.AnuntModel();
+                AnuntModel anuntModel = new AnuntModel();
+                anuntModel.ID_Anunt = model.ID_Anunt;
+                anuntModel.ID_Caracteristica = model.ID_Caracteristica;
+                anuntModel.ID_Model = model.ID_Model;
+                anuntModel.ID_Marca = model.ID_Marca;
+                anuntModel.ID_TipCaracteristica = model.ID_TipCaracteristica;
+                anuntModel.KM = model.KM;
+                anuntModel.Pret = model.Pret;
+                anuntModel.Descriere = model.Descriere;
+                anuntModel.AnFabricatie = model.AnFabricatie;
 
-                //incarcam datele in model
-                UpdateModel(anuntModel);
-
-                //apelam resursa care salveaz datele(insert)
-                anuntRepository.InsertAnunt(anuntModel);
-
-                //redirectam spre index in caz de succes
-                return RedirectToAction("Index");
+                anuntRepository.UpdateAnunt(anuntModel);
+                return RedirectToAction("IndexAnunt");
             }
-            catch (Exception ex)
+            else
             {
-                //redirectare catre view-ul curent in caz de erori
-                return View("CreateAnunt");
+
+                if (model != null)
+                {
+                    AnuntModel anuntModel = new AnuntModel();
+                    anuntModel.ImagePath = model.ImagePath;
+                    anuntModel.ID_Caracteristica = model.ID_Caracteristica;
+                    anuntModel.ID_Model = model.ID_Model;
+                    anuntModel.ID_Marca = model.ID_Marca;
+                    anuntModel.ID_TipCaracteristica = model.ID_TipCaracteristica;
+                    anuntModel.KM = model.KM;
+                    anuntModel.Pret = model.Pret;
+                    anuntModel.Descriere = model.Descriere;
+                    anuntModel.DescriereScurta = model.DescriereScurta;
+                    anuntModel.AnFabricatie = model.AnFabricatie;
+                    anuntRepository.InsertAnunt(anuntModel);
+
+
+                    //foreach
+                    CarImgModel carImgModel = new CarImgModel();
+
+                    if (model.ImageFile != null)
+                    {
+
+                        //Use Namespace called :  System.IO  
+                        carImgModel.TitleFile = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
+
+                        //To Get File Extension  
+                        carImgModel.ExtensionFile = Path.GetExtension(model.ImageFile.FileName);
+
+                        //To copy and save file into server.  
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            model.ImageFile.InputStream.CopyTo(memoryStream);
+                            carImgModel.ContentFile = memoryStream.ToArray();
+                        }
+                    }
+
+                    carImgModel.ID_Anunt = anuntModel.ID_Anunt;
+
+                    imgRepository.InsertCarImg(carImgModel);
+                }                
+
+                return RedirectToAction("IndexAnunt");
             }
         }
+     
+
+
+
 
         // GET: Anunt/Edit/5
         public ActionResult EditAnunt(Guid ID)

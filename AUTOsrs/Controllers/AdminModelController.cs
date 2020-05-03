@@ -12,16 +12,38 @@ namespace AUTOsrs.Controllers
         private Repository.ModelAutoRepository modelAutoRepository = new Repository.ModelAutoRepository();
         private Repository.MarcaAutoRepository marcaAutoRepository = new Repository.MarcaAutoRepository();
 
-        // GET: Admin df
-        public ActionResult DashboardCreareModel()
-        {
-            AdminModelViewModel AdminModelViewModel = new AdminModelViewModel();
-            AdminModelViewModel.Marci = marcaAutoRepository.GetAllMarca();
 
-            return View(AdminModelViewModel);
+
+        // Afisarea listei de modele legate de marci
+        public ActionResult DashboardListaModele()
+        {
+            //incarcam lista de modele
+            List<ModelAutoModel> modele = modelAutoRepository.GetAllModel();
+
+            foreach (var model in modele)
+            {
+                MarcaAutoModel marca = marcaAutoRepository.GetMarcaAutoByID(model.ID_Marca);
+                model.Marca = marca.Marca;
+            }
+
+            return View("DashboardListaModele", modele);
         }
 
-        //Post: Admin/SaveModel/5
+
+        // Afisarea paginii unde se creaza modele 
+        public ActionResult DashboardCreareModel()
+        {
+            AdminModelViewModel adminModelViewModel = new AdminModelViewModel();
+            adminModelViewModel.Marci = marcaAutoRepository.GetAllMarca();
+
+            return View(adminModelViewModel);
+        }
+
+
+
+
+        // actiunea de salvare si update a modelului in functie de marca selectata
+        // Post: Admin/SaveModel/5
         public ActionResult SaveModel(AdminModelViewModel model)
         {
             if (model.ID_Model != Guid.Empty)
@@ -47,21 +69,10 @@ namespace AUTOsrs.Controllers
 
 
 
-        public ActionResult DashboardListaModele()
-        {
-            //incarcam lista de anunturi
-            List<Models.ModelAutoModel> modele = modelAutoRepository.GetAllModel();
-
-            foreach (var model in modele)
-            {
-                MarcaAutoModel marca = marcaAutoRepository.GetMarcaAutoByID(model.ID_Marca);
-                model.Marca = marca.Marca;
-            }
-
-            return View("DashboardListaModele", modele);
-        }
+     
 
 
+        // editarea modelului
         // GET: Admin/Edit/5
         public ActionResult EditModel(Guid id)
         {
@@ -76,6 +87,8 @@ namespace AUTOsrs.Controllers
             return View("DashboardCreareModel", model);
         }
 
+
+        // stergere
         // GET: Admin/Delete/5
         public ActionResult DeleteModel(Guid id)
         {

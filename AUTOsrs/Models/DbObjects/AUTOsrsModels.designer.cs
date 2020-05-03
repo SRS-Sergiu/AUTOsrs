@@ -30,12 +30,6 @@ namespace AUTOsrs.Models.DbObjects
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
-    partial void InsertTipCaracteristica(TipCaracteristica instance);
-    partial void UpdateTipCaracteristica(TipCaracteristica instance);
-    partial void DeleteTipCaracteristica(TipCaracteristica instance);
     partial void InsertCaracteristici(Caracteristici instance);
     partial void UpdateCaracteristici(Caracteristici instance);
     partial void DeleteCaracteristici(Caracteristici instance);
@@ -45,13 +39,22 @@ namespace AUTOsrs.Models.DbObjects
     partial void InsertModelAuto(ModelAuto instance);
     partial void UpdateModelAuto(ModelAuto instance);
     partial void DeleteModelAuto(ModelAuto instance);
+    partial void InsertTipCaracteristica(TipCaracteristica instance);
+    partial void UpdateTipCaracteristica(TipCaracteristica instance);
+    partial void DeleteTipCaracteristica(TipCaracteristica instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertCarImg(CarImg instance);
+    partial void UpdateCarImg(CarImg instance);
+    partial void DeleteCarImg(CarImg instance);
     partial void InsertAnunt(Anunt instance);
     partial void UpdateAnunt(Anunt instance);
     partial void DeleteAnunt(Anunt instance);
     #endregion
 		
 		public AUTOsrsModelsDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["AUTOsrsConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["AUTOsrsConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -80,22 +83,6 @@ namespace AUTOsrs.Models.DbObjects
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
-			}
-		}
-		
-		public System.Data.Linq.Table<TipCaracteristica> TipCaracteristicas
-		{
-			get
-			{
-				return this.GetTable<TipCaracteristica>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Caracteristici> Caracteristicis
 		{
 			get
@@ -120,312 +107,36 @@ namespace AUTOsrs.Models.DbObjects
 			}
 		}
 		
+		public System.Data.Linq.Table<TipCaracteristica> TipCaracteristicas
+		{
+			get
+			{
+				return this.GetTable<TipCaracteristica>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CarImg> CarImgs
+		{
+			get
+			{
+				return this.GetTable<CarImg>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Anunt> Anunts
 		{
 			get
 			{
 				return this.GetTable<Anunt>();
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ID_User;
-		
-		private string _Email;
-		
-		private string _Password;
-		
-		private string _Fname;
-		
-		private string _Lname;
-		
-		private EntitySet<Anunt> _Anunts;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnID_UserChanging(System.Guid value);
-    partial void OnID_UserChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnFnameChanging(string value);
-    partial void OnFnameChanged();
-    partial void OnLnameChanging(string value);
-    partial void OnLnameChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Anunts = new EntitySet<Anunt>(new Action<Anunt>(this.attach_Anunts), new Action<Anunt>(this.detach_Anunts));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_User", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ID_User
-		{
-			get
-			{
-				return this._ID_User;
-			}
-			set
-			{
-				if ((this._ID_User != value))
-				{
-					this.OnID_UserChanging(value);
-					this.SendPropertyChanging();
-					this._ID_User = value;
-					this.SendPropertyChanged("ID_User");
-					this.OnID_UserChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fname", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Fname
-		{
-			get
-			{
-				return this._Fname;
-			}
-			set
-			{
-				if ((this._Fname != value))
-				{
-					this.OnFnameChanging(value);
-					this.SendPropertyChanging();
-					this._Fname = value;
-					this.SendPropertyChanged("Fname");
-					this.OnFnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lname", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Lname
-		{
-			get
-			{
-				return this._Lname;
-			}
-			set
-			{
-				if ((this._Lname != value))
-				{
-					this.OnLnameChanging(value);
-					this.SendPropertyChanging();
-					this._Lname = value;
-					this.SendPropertyChanged("Lname");
-					this.OnLnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Anunt", Storage="_Anunts", ThisKey="ID_User", OtherKey="ID_User")]
-		public EntitySet<Anunt> Anunts
-		{
-			get
-			{
-				return this._Anunts;
-			}
-			set
-			{
-				this._Anunts.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Anunts(Anunt entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Anunts(Anunt entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TipCaracteristica")]
-	public partial class TipCaracteristica : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ID_TipCaracteristica;
-		
-		private string _NumeTipCaracteristica;
-		
-		private EntitySet<Caracteristici> _Caracteristicis;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnID_TipCaracteristicaChanging(System.Guid value);
-    partial void OnID_TipCaracteristicaChanged();
-    partial void OnNumeTipCaracteristicaChanging(string value);
-    partial void OnNumeTipCaracteristicaChanged();
-    #endregion
-		
-		public TipCaracteristica()
-		{
-			this._Caracteristicis = new EntitySet<Caracteristici>(new Action<Caracteristici>(this.attach_Caracteristicis), new Action<Caracteristici>(this.detach_Caracteristicis));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_TipCaracteristica", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ID_TipCaracteristica
-		{
-			get
-			{
-				return this._ID_TipCaracteristica;
-			}
-			set
-			{
-				if ((this._ID_TipCaracteristica != value))
-				{
-					this.OnID_TipCaracteristicaChanging(value);
-					this.SendPropertyChanging();
-					this._ID_TipCaracteristica = value;
-					this.SendPropertyChanged("ID_TipCaracteristica");
-					this.OnID_TipCaracteristicaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeTipCaracteristica", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string NumeTipCaracteristica
-		{
-			get
-			{
-				return this._NumeTipCaracteristica;
-			}
-			set
-			{
-				if ((this._NumeTipCaracteristica != value))
-				{
-					this.OnNumeTipCaracteristicaChanging(value);
-					this.SendPropertyChanging();
-					this._NumeTipCaracteristica = value;
-					this.SendPropertyChanged("NumeTipCaracteristica");
-					this.OnNumeTipCaracteristicaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TipCaracteristica_Caracteristici", Storage="_Caracteristicis", ThisKey="ID_TipCaracteristica", OtherKey="ID_TipCaracteristica")]
-		public EntitySet<Caracteristici> Caracteristicis
-		{
-			get
-			{
-				return this._Caracteristicis;
-			}
-			set
-			{
-				this._Caracteristicis.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Caracteristicis(Caracteristici entity)
-		{
-			this.SendPropertyChanging();
-			entity.TipCaracteristica = this;
-		}
-		
-		private void detach_Caracteristicis(Caracteristici entity)
-		{
-			this.SendPropertyChanging();
-			entity.TipCaracteristica = null;
 		}
 	}
 	
@@ -901,19 +612,518 @@ namespace AUTOsrs.Models.DbObjects
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TipCaracteristica")]
+	public partial class TipCaracteristica : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID_TipCaracteristica;
+		
+		private string _NumeTipCaracteristica;
+		
+		private EntitySet<Caracteristici> _Caracteristicis;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_TipCaracteristicaChanging(System.Guid value);
+    partial void OnID_TipCaracteristicaChanged();
+    partial void OnNumeTipCaracteristicaChanging(string value);
+    partial void OnNumeTipCaracteristicaChanged();
+    #endregion
+		
+		public TipCaracteristica()
+		{
+			this._Caracteristicis = new EntitySet<Caracteristici>(new Action<Caracteristici>(this.attach_Caracteristicis), new Action<Caracteristici>(this.detach_Caracteristicis));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_TipCaracteristica", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ID_TipCaracteristica
+		{
+			get
+			{
+				return this._ID_TipCaracteristica;
+			}
+			set
+			{
+				if ((this._ID_TipCaracteristica != value))
+				{
+					this.OnID_TipCaracteristicaChanging(value);
+					this.SendPropertyChanging();
+					this._ID_TipCaracteristica = value;
+					this.SendPropertyChanged("ID_TipCaracteristica");
+					this.OnID_TipCaracteristicaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeTipCaracteristica", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string NumeTipCaracteristica
+		{
+			get
+			{
+				return this._NumeTipCaracteristica;
+			}
+			set
+			{
+				if ((this._NumeTipCaracteristica != value))
+				{
+					this.OnNumeTipCaracteristicaChanging(value);
+					this.SendPropertyChanging();
+					this._NumeTipCaracteristica = value;
+					this.SendPropertyChanged("NumeTipCaracteristica");
+					this.OnNumeTipCaracteristicaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TipCaracteristica_Caracteristici", Storage="_Caracteristicis", ThisKey="ID_TipCaracteristica", OtherKey="ID_TipCaracteristica")]
+		public EntitySet<Caracteristici> Caracteristicis
+		{
+			get
+			{
+				return this._Caracteristicis;
+			}
+			set
+			{
+				this._Caracteristicis.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Caracteristicis(Caracteristici entity)
+		{
+			this.SendPropertyChanging();
+			entity.TipCaracteristica = this;
+		}
+		
+		private void detach_Caracteristicis(Caracteristici entity)
+		{
+			this.SendPropertyChanging();
+			entity.TipCaracteristica = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID_User;
+		
+		private string _Email;
+		
+		private string _Password;
+		
+		private string _Fname;
+		
+		private string _Lname;
+		
+		private EntitySet<Anunt> _Anunts;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_UserChanging(System.Guid value);
+    partial void OnID_UserChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnFnameChanging(string value);
+    partial void OnFnameChanged();
+    partial void OnLnameChanging(string value);
+    partial void OnLnameChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Anunts = new EntitySet<Anunt>(new Action<Anunt>(this.attach_Anunts), new Action<Anunt>(this.detach_Anunts));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_User", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ID_User
+		{
+			get
+			{
+				return this._ID_User;
+			}
+			set
+			{
+				if ((this._ID_User != value))
+				{
+					this.OnID_UserChanging(value);
+					this.SendPropertyChanging();
+					this._ID_User = value;
+					this.SendPropertyChanged("ID_User");
+					this.OnID_UserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fname", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Fname
+		{
+			get
+			{
+				return this._Fname;
+			}
+			set
+			{
+				if ((this._Fname != value))
+				{
+					this.OnFnameChanging(value);
+					this.SendPropertyChanging();
+					this._Fname = value;
+					this.SendPropertyChanged("Fname");
+					this.OnFnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lname", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Lname
+		{
+			get
+			{
+				return this._Lname;
+			}
+			set
+			{
+				if ((this._Lname != value))
+				{
+					this.OnLnameChanging(value);
+					this.SendPropertyChanging();
+					this._Lname = value;
+					this.SendPropertyChanged("Lname");
+					this.OnLnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Anunt", Storage="_Anunts", ThisKey="ID_User", OtherKey="ID_User")]
+		public EntitySet<Anunt> Anunts
+		{
+			get
+			{
+				return this._Anunts;
+			}
+			set
+			{
+				this._Anunts.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Anunts(Anunt entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Anunts(Anunt entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CarImg")]
+	public partial class CarImg : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID_CarImg;
+		
+		private System.Guid _ID_Anunt;
+		
+		private System.Data.Linq.Binary _ContentFile;
+		
+		private string _TitleFile;
+		
+		private string _ExtensionFile;
+		
+		private EntityRef<Anunt> _Anunt;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_CarImgChanging(System.Guid value);
+    partial void OnID_CarImgChanged();
+    partial void OnID_AnuntChanging(System.Guid value);
+    partial void OnID_AnuntChanged();
+    partial void OnContentFileChanging(System.Data.Linq.Binary value);
+    partial void OnContentFileChanged();
+    partial void OnTitleFileChanging(string value);
+    partial void OnTitleFileChanged();
+    partial void OnExtensionFileChanging(string value);
+    partial void OnExtensionFileChanged();
+    #endregion
+		
+		public CarImg()
+		{
+			this._Anunt = default(EntityRef<Anunt>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CarImg", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ID_CarImg
+		{
+			get
+			{
+				return this._ID_CarImg;
+			}
+			set
+			{
+				if ((this._ID_CarImg != value))
+				{
+					this.OnID_CarImgChanging(value);
+					this.SendPropertyChanging();
+					this._ID_CarImg = value;
+					this.SendPropertyChanged("ID_CarImg");
+					this.OnID_CarImgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Anunt", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ID_Anunt
+		{
+			get
+			{
+				return this._ID_Anunt;
+			}
+			set
+			{
+				if ((this._ID_Anunt != value))
+				{
+					if (this._Anunt.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnID_AnuntChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Anunt = value;
+					this.SendPropertyChanged("ID_Anunt");
+					this.OnID_AnuntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentFile", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ContentFile
+		{
+			get
+			{
+				return this._ContentFile;
+			}
+			set
+			{
+				if ((this._ContentFile != value))
+				{
+					this.OnContentFileChanging(value);
+					this.SendPropertyChanging();
+					this._ContentFile = value;
+					this.SendPropertyChanged("ContentFile");
+					this.OnContentFileChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TitleFile", DbType="NVarChar(150)")]
+		public string TitleFile
+		{
+			get
+			{
+				return this._TitleFile;
+			}
+			set
+			{
+				if ((this._TitleFile != value))
+				{
+					this.OnTitleFileChanging(value);
+					this.SendPropertyChanging();
+					this._TitleFile = value;
+					this.SendPropertyChanged("TitleFile");
+					this.OnTitleFileChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExtensionFile", DbType="NVarChar(5)")]
+		public string ExtensionFile
+		{
+			get
+			{
+				return this._ExtensionFile;
+			}
+			set
+			{
+				if ((this._ExtensionFile != value))
+				{
+					this.OnExtensionFileChanging(value);
+					this.SendPropertyChanging();
+					this._ExtensionFile = value;
+					this.SendPropertyChanged("ExtensionFile");
+					this.OnExtensionFileChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Anunt_CarImg", Storage="_Anunt", ThisKey="ID_Anunt", OtherKey="ID_Anunt", IsForeignKey=true)]
+		public Anunt Anunt
+		{
+			get
+			{
+				return this._Anunt.Entity;
+			}
+			set
+			{
+				Anunt previousValue = this._Anunt.Entity;
+				if (((previousValue != value) 
+							|| (this._Anunt.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Anunt.Entity = null;
+						previousValue.CarImgs.Remove(this);
+					}
+					this._Anunt.Entity = value;
+					if ((value != null))
+					{
+						value.CarImgs.Add(this);
+						this._ID_Anunt = value.ID_Anunt;
+					}
+					else
+					{
+						this._ID_Anunt = default(System.Guid);
+					}
+					this.SendPropertyChanged("Anunt");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Anunt")]
 	public partial class Anunt : INotifyPropertyChanging, INotifyPropertyChanged
 	{
-		//asdasd
-        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private System.Guid _ID_Anunt;
 		
 		private System.Nullable<System.Guid> _ID_User;
 		
-		private System.Nullable<System.Guid> _ID_Model;
+		private System.Guid _ID_Model;
 		
-		private System.Nullable<System.Guid> _ID_Caracteristica;
+		private System.Guid _ID_Caracteristica;
 		
 		private int _KM;
 		
@@ -922,6 +1132,14 @@ namespace AUTOsrs.Models.DbObjects
 		private string _Descriere;
 		
 		private int _AnFabricatie;
+		
+		private System.Guid _ID_TipCaracteristica;
+		
+		private System.Guid _ID_Marca;
+		
+		private string _DescriereScurta;
+		
+		private EntitySet<CarImg> _CarImgs;
 		
 		private EntityRef<Caracteristici> _Caracteristici;
 		
@@ -937,9 +1155,9 @@ namespace AUTOsrs.Models.DbObjects
     partial void OnID_AnuntChanged();
     partial void OnID_UserChanging(System.Nullable<System.Guid> value);
     partial void OnID_UserChanged();
-    partial void OnID_ModelChanging(System.Nullable<System.Guid> value);
+    partial void OnID_ModelChanging(System.Guid value);
     partial void OnID_ModelChanged();
-    partial void OnID_CaracteristicaChanging(System.Nullable<System.Guid> value);
+    partial void OnID_CaracteristicaChanging(System.Guid value);
     partial void OnID_CaracteristicaChanged();
     partial void OnKMChanging(int value);
     partial void OnKMChanged();
@@ -949,10 +1167,17 @@ namespace AUTOsrs.Models.DbObjects
     partial void OnDescriereChanged();
     partial void OnAnFabricatieChanging(int value);
     partial void OnAnFabricatieChanged();
+    partial void OnID_TipCaracteristicaChanging(System.Guid value);
+    partial void OnID_TipCaracteristicaChanged();
+    partial void OnID_MarcaChanging(System.Guid value);
+    partial void OnID_MarcaChanged();
+    partial void OnDescriereScurtaChanging(string value);
+    partial void OnDescriereScurtaChanged();
     #endregion
 		
 		public Anunt()
 		{
+			this._CarImgs = new EntitySet<CarImg>(new Action<CarImg>(this.attach_CarImgs), new Action<CarImg>(this.detach_CarImgs));
 			this._Caracteristici = default(EntityRef<Caracteristici>);
 			this._ModelAuto = default(EntityRef<ModelAuto>);
 			this._User = default(EntityRef<User>);
@@ -1003,8 +1228,8 @@ namespace AUTOsrs.Models.DbObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Model", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> ID_Model
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Model", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ID_Model
 		{
 			get
 			{
@@ -1027,8 +1252,8 @@ namespace AUTOsrs.Models.DbObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Caracteristica", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> ID_Caracteristica
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Caracteristica", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ID_Caracteristica
 		{
 			get
 			{
@@ -1091,7 +1316,7 @@ namespace AUTOsrs.Models.DbObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descriere", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descriere", DbType="VarChar(MAX)")]
 		public string Descriere
 		{
 			get
@@ -1131,6 +1356,79 @@ namespace AUTOsrs.Models.DbObjects
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_TipCaracteristica", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ID_TipCaracteristica
+		{
+			get
+			{
+				return this._ID_TipCaracteristica;
+			}
+			set
+			{
+				if ((this._ID_TipCaracteristica != value))
+				{
+					this.OnID_TipCaracteristicaChanging(value);
+					this.SendPropertyChanging();
+					this._ID_TipCaracteristica = value;
+					this.SendPropertyChanged("ID_TipCaracteristica");
+					this.OnID_TipCaracteristicaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Marca", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ID_Marca
+		{
+			get
+			{
+				return this._ID_Marca;
+			}
+			set
+			{
+				if ((this._ID_Marca != value))
+				{
+					this.OnID_MarcaChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Marca = value;
+					this.SendPropertyChanged("ID_Marca");
+					this.OnID_MarcaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescriereScurta", DbType="VarChar(150)")]
+		public string DescriereScurta
+		{
+			get
+			{
+				return this._DescriereScurta;
+			}
+			set
+			{
+				if ((this._DescriereScurta != value))
+				{
+					this.OnDescriereScurtaChanging(value);
+					this.SendPropertyChanging();
+					this._DescriereScurta = value;
+					this.SendPropertyChanged("DescriereScurta");
+					this.OnDescriereScurtaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Anunt_CarImg", Storage="_CarImgs", ThisKey="ID_Anunt", OtherKey="ID_Anunt")]
+		public EntitySet<CarImg> CarImgs
+		{
+			get
+			{
+				return this._CarImgs;
+			}
+			set
+			{
+				this._CarImgs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Caracteristici_Anunt", Storage="_Caracteristici", ThisKey="ID_Caracteristica", OtherKey="ID_Caracteristica", IsForeignKey=true)]
 		public Caracteristici Caracteristici
 		{
@@ -1158,7 +1456,7 @@ namespace AUTOsrs.Models.DbObjects
 					}
 					else
 					{
-						this._ID_Caracteristica = default(Nullable<System.Guid>);
+						this._ID_Caracteristica = default(System.Guid);
 					}
 					this.SendPropertyChanged("Caracteristici");
 				}
@@ -1192,7 +1490,7 @@ namespace AUTOsrs.Models.DbObjects
 					}
 					else
 					{
-						this._ID_Model = default(Nullable<System.Guid>);
+						this._ID_Model = default(System.Guid);
 					}
 					this.SendPropertyChanged("ModelAuto");
 				}
@@ -1251,6 +1549,18 @@ namespace AUTOsrs.Models.DbObjects
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_CarImgs(CarImg entity)
+		{
+			this.SendPropertyChanging();
+			entity.Anunt = this;
+		}
+		
+		private void detach_CarImgs(CarImg entity)
+		{
+			this.SendPropertyChanging();
+			entity.Anunt = null;
 		}
 	}
 }
