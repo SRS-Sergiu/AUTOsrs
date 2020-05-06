@@ -64,9 +64,25 @@ namespace AUTOsrs.Controllers
         }
 
         // GET: Admin/Delete/5
-        public ActionResult DeleteMarca(Guid id)
+        public ActionResult DeleteMarca(Guid id, FormCollection collection)
         {
-            marcaAutoRepository.DeleteMarcaAuto(id);
+            try
+            {
+                List<MarcaAutoModel> marcaAutoModels = marcaAutoRepository.GetAllMarcaAutoByID(id);
+                foreach(MarcaAutoModel marcaAutoModel in marcaAutoModels)
+                {
+                    marcaAutoRepository.DeleteMarcaAuto(marcaAutoModel.ID_Marca);
+                }
+
+                marcaAutoRepository.DeleteMarcaAuto(id);
+
+                return RedirectToAction("DashboardListaMarci");
+            }
+            catch
+                {
+
+                }
+            //marcaAutoRepository.DeleteMarcaAuto(id);
             return RedirectToAction("DashboardListaMarci");
         }
 

@@ -794,3 +794,6 @@ footer p{
     border-top: 4px solid var(--main-red-color);
 }
 
+#PartialAnutView .carList_item:first-child {
+    border-top: 0;
+}

@@ -1,63 +1,115 @@
 ﻿@model IEnumerable<AUTOsrs.ViewModels.DashboardViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_Anunt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pret)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AnFabricatie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DescriereScurta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.D_Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.D_Marca)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_Anunt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pret)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnFabricatie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescriereScurta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.D_Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.D_Marca)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+
+
+@foreach (var item in Model)
+{
+    <div class="carList_item">
+
+        <div class="numebrOfItem">
+            1
+        </div>
+
+        <div class="car_img">
+            <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt">
+                <img class="byDefault_carList" src="~/File/AnuntFile?ID=@item.ID_Anunt" alt="" />
+            </a>
+
+        </div>
+
+
+
+
+        <div class="car_content">
+            <div class="car_content_section1">
+
+
+                <div class="d_userName">
+                    gusti
+                </div>
+                <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt">
+                    <div class="car_title">
+
+                        <div class="car_title1">@Html.DisplayFor(modelItem => item.D_Marca)</div>
+                        <div class="car_title2">@Html.DisplayFor(modelItem => item.D_Model)</div>
+
+                    </div>
+                </a>
+                <div class="car_price">
+                    @Html.DisplayFor(modelItem => item.Pret)
+                </div>
+            </div>
+            @*<div class="car_content_section2">
+                <div class="car_description">
+                    <div class="car_description1">
+                        <div class="car_descriptioN_IMG">
+                            <img src="~/Content/img/road.svg" alt="" />
+                        </div>
+                        <div class="car_descriptioN_tip">km</div>
+                    </div>
+                    <div class="car_description2">
+                        @Html.DisplayFor(modelItem => item.KM)
+                    </div>
+
+                </div>
+                <div class="car_description car_descriptionA">
+                    <div class="car_description1">
+                        <div class="car_descriptioN_IMG">
+                            <img src="~/Content/img/car.svg" alt="" />
+                        </div>
+                        <div class="car_descriptioN_tip">an</div>
+                    </div>
+                    <div class="car_description2">
+                        @Html.DisplayFor(modelItem => item.AnFabricatie)
+                    </div>
+
+                </div>
+                <div class="car_description car_descriptionB">
+                    <div class="car_description1">
+                        <div class="car_descriptioN_IMG">
+                            <img src="~/Content/img/gas-station.svg" alt="" />
+                        </div>
+                        <div class="car_descriptioN_tip">Caracteristica</div>
+                    </div>
+                    <div class="car_description2">
+                        @Html.DisplayFor(modelItem => item.NumeCaracteristica)
+                    </div>
+
+                </div>
+                <div class="car_description">
+                    <div class="car_description1">
+                        <div class="car_descriptioN_IMG">
+                            <img src="~/Content/img/support.svg" alt="" />
+                        </div>
+                        <div class="car_descriptioN_tip">Tip Caracteristica</div>
+                    </div>
+                    <div class="car_description2">
+                        @Html.DisplayFor(modelItem => item.NumeTipCaracteristica)
+                    </div>
+
+                </div>
+            </div>*@
+
+            <div class="productsList_descriereScurta">
+                @Html.DisplayFor(modelItem => item.DescriereScurta)
+            </div>
+
+            <div class="car_btn">
+                <a href="/contact" class="car_btn_contact btn_srs">Date User</a>
+                 @Html.ActionLink("Sterge Anunt", "DeleteAnunt", new { id = item.ID_Anunt }, new { @class = "car_btn_offer btn_srs"} )
+                <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt" class=" car_btn_offer btn_srs">Vezi Anunt</a>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
 }
-
-</table>

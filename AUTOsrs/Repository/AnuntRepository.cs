@@ -123,12 +123,13 @@ namespace AUTOsrs.Repository
         //delete
         public void DeleteAnunt(Guid ID)
         {
-            Models.DbObjects.Anunt anuntToDelete = dbContext.Anunts.FirstOrDefault(x => x.ID_Anunt == ID);
+            Anunt anuntToDelete = dbContext.Anunts.FirstOrDefault(x => x.ID_Anunt == ID);
             if(anuntToDelete != null)
             {
                 dbContext.Anunts.DeleteOnSubmit(anuntToDelete);
                 dbContext.SubmitChanges();
             }
+            
 
         }
 
@@ -187,10 +188,10 @@ namespace AUTOsrs.Repository
 
 
 
+
+
+
         // ----------
-
-
-
         //  Product Details Page
         private DetailsAnuntViewModel MapDbObjectToModelIMG(Anunt dbAnunt)
         {

@@ -23,21 +23,30 @@ namespace AUTOsrs.Controllers
 
 
         // GET: Dashboard
-      
         public ActionResult Index()
         {
-           
             List<DashboardViewModel> admin_anunt = anuntRepository.GetAllAnuntDashboard();
             DashboardViewModel dashboardViewModel = new DashboardViewModel();
             //dashboardViewModel.admin_Caracteristica = caracteristiciRepository.GetAllCaracteristici();
             //dashboardViewModel.admin_tipCaracteristica = tipCaracteristicaRepository.GetAllTipCaracteristica();
             //dashboardViewModel.admin_Model = modelAutoRepository.GetAllModel();
             //dashboardViewModel.admin_Marca = marcaAutoRepository.GetAllMarca();
-
-           
-            
             return View("Index", admin_anunt);
         }
+
+        // Delete anunt
+        public ActionResult DeleteAnunt(Guid id)
+        {
+            anuntRepository.DeleteAnunt(id);
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
+        // -------------
+        // Partial views
         public ActionResult PartialAnuntView()
         {
 
@@ -60,9 +69,6 @@ namespace AUTOsrs.Controllers
 
         public ActionResult PartialAnuntView5()
         {
-
-
-          
             DashboardViewModel dashboardViewModel = new DashboardViewModel();
             List<DashboardViewModel> dashboardViewModels = anuntRepository.GetAllAnuntDashboard();
             foreach (var anunt in dashboardViewModels)

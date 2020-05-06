@@ -84,7 +84,7 @@ namespace AUTOsrs.Repository
         public void DeleteModelAuto(Guid ID)
         {
             //get exising record to delete
-            Models.DbObjects.ModelAuto recordToDelete = dbContext.ModelAutos.FirstOrDefault(x => x.ID_Model == ID);
+            ModelAuto recordToDelete = dbContext.ModelAutos.FirstOrDefault(x => x.ID_Model == ID);
             if(recordToDelete != null)
             {
                 dbContext.ModelAutos.DeleteOnSubmit(recordToDelete);
