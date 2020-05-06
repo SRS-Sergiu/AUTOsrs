@@ -34,17 +34,7 @@ namespace AUTOsrs.Controllers
             //dashboardViewModel.admin_Model = modelAutoRepository.GetAllModel();
             //dashboardViewModel.admin_Marca = marcaAutoRepository.GetAllMarca();
 
-            //foreach (var item in admin_anunt)
-            //{
-            //    MarcaAutoModel marcaAutoModel = marcaAutoRepository.GetMarcaAutoByID(item.ID_Marca);
-            //    ModelAutoModel modelAutoModel = modelAutoRepository.GetModelAutoByID(item.ID_Model);
-            //    CaracteristiciModel caracteristiciModel = caracteristiciRepository.GetCaracteristiciModelByID(item.ID_Caracteristica);
-            //    TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristicaRepository.GetTipCaracteristicaByID(item.ID_TipCaracteristica);
-
-            //    item.D_Marca = marcaAutoModel.Marca;
-            //    item.D_Model = modelAutoModel.Model;
-
-            //}
+           
             
             return View("Index", admin_anunt);
         }
