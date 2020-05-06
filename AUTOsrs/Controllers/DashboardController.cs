@@ -26,42 +26,69 @@ namespace AUTOsrs.Controllers
       
         public ActionResult Index()
         {
-            List<AnuntModel> admin_anunt1 = anuntRepository.GetAllAnunt();
-            DashboardViewModel admin_anunt = new DashboardViewModel();
-            admin_anunt.admin_anuntVM = admin_anunt1;
-            admin_anunt.admin_Caracteristica = caracteristiciRepository.GetAllCaracteristici();
-            admin_anunt.admin_tipCaracteristica = tipCaracteristicaRepository.GetAllTipCaracteristica();
-            admin_anunt.admin_Model = modelAutoRepository.GetAllModel();
-            admin_anunt.admin_Marca = marcaAutoRepository.GetAllMarca();
+           
+            List<DashboardViewModel> admin_anunt = anuntRepository.GetAllAnuntDashboard();
+            DashboardViewModel dashboardViewModel = new DashboardViewModel();
+            //dashboardViewModel.admin_Caracteristica = caracteristiciRepository.GetAllCaracteristici();
+            //dashboardViewModel.admin_tipCaracteristica = tipCaracteristicaRepository.GetAllTipCaracteristica();
+            //dashboardViewModel.admin_Model = modelAutoRepository.GetAllModel();
+            //dashboardViewModel.admin_Marca = marcaAutoRepository.GetAllMarca();
 
-            foreach (var item in admin_anunt1)
-            {
-                admin_anunt.Marca = item.Marca;
-            }
+            //foreach (var item in admin_anunt)
+            //{
+            //    MarcaAutoModel marcaAutoModel = marcaAutoRepository.GetMarcaAutoByID(item.ID_Marca);
+            //    ModelAutoModel modelAutoModel = modelAutoRepository.GetModelAutoByID(item.ID_Model);
+            //    CaracteristiciModel caracteristiciModel = caracteristiciRepository.GetCaracteristiciModelByID(item.ID_Caracteristica);
+            //    TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristicaRepository.GetTipCaracteristicaByID(item.ID_TipCaracteristica);
+
+            //    item.D_Marca = marcaAutoModel.Marca;
+            //    item.D_Model = modelAutoModel.Model;
+
+            //}
             
             return View("Index", admin_anunt);
         }
         public ActionResult PartialAnuntView()
         {
 
-            List<AnuntModel> admin_anunt1 = new List<AnuntModel>();
-            DashboardViewModel admin_anunt = new DashboardViewModel();
-            admin_anunt.admin_anuntVM = admin_anunt1;
-            //foreach (var anunt in admin_anunt.admin_anuntVM)
-            //{
-            //    MarcaAutoModel marcaAutoModel = marcaAutoRepository.GetMarcaAutoByID(anunt.ID_Marca);
-            //    ModelAutoModel modelAutoModel = modelAutoRepository.GetModelAutoByID(anunt.ID_Model);
-            //    CaracteristiciModel caracteristiciModel = caracteristiciRepository.GetCaracteristiciModelByID(anunt.ID_Caracteristica);
-            //    TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristicaRepository.GetTipCaracteristicaByID(anunt.ID_TipCaracteristica);
-            //    anunt.Marca = marcaAutoModel.Marca;
-            //    anunt.Model = modelAutoModel.Model;
-            //    anunt.NumeCaracteristica = caracteristiciModel.NumeCaracteristica;
-            //    anunt.NumeTipCaracteristica = tipCaracteristicaModel.NumeTipCaracteristica;
-            //}
+            List<DashboardViewModel> dashboardViewModels = anuntRepository.GetAllAnuntDashboard();
+            foreach (var anunt in dashboardViewModels)
+            {
+                MarcaAutoModel marcaAutoModel = marcaAutoRepository.GetMarcaAutoByID(anunt.ID_Marca);
+                ModelAutoModel modelAutoModel = modelAutoRepository.GetModelAutoByID(anunt.ID_Model);
+                //CaracteristiciModel caracteristiciModel = caracteristiciRepository.GetCaracteristiciModelByID(anunt.ID_Caracteristica);
+                //TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristicaRepository.GetTipCaracteristicaByID(anunt.ID_TipCaracteristica);
+                anunt.D_Marca = marcaAutoModel.Marca;
+                anunt.D_Model = modelAutoModel.Model;
+                //anunt.NumeCaracteristica = caracteristiciModel.NumeCaracteristica;
+                //anunt.NumeTipCaracteristica = tipCaracteristicaModel.NumeTipCaracteristica;
+            }
 
 
+            return PartialView("PartialAnuntView", dashboardViewModels);
+        }
 
-            return PartialView("PartialAnuntView");
+        public ActionResult PartialAnuntView5()
+        {
+
+
+          
+            DashboardViewModel dashboardViewModel = new DashboardViewModel();
+            List<DashboardViewModel> dashboardViewModels = anuntRepository.GetAllAnuntDashboard();
+            foreach (var anunt in dashboardViewModels)
+            {
+                MarcaAutoModel marcaAutoModel = marcaAutoRepository.GetMarcaAutoByID(anunt.ID_Marca);
+                ModelAutoModel modelAutoModel = modelAutoRepository.GetModelAutoByID(anunt.ID_Model);
+                //CaracteristiciModel caracteristiciModel = caracteristiciRepository.GetCaracteristiciModelByID(anunt.ID_Caracteristica);
+                //TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristicaRepository.GetTipCaracteristicaByID(anunt.ID_TipCaracteristica);
+                dashboardViewModel.D_Marca = marcaAutoModel.Marca;
+                dashboardViewModel.D_Model = modelAutoModel.Model;
+                //dashboardViewModel.NumeCaracteristica = caracteristiciModel.NumeCaracteristica;
+                //dashboardViewModel.NumeTipCaracteristica = tipCaracteristicaModel.NumeTipCaracteristica;
+            }
+            
+
+            return PartialView("PartialAnuntView5", dashboardViewModels);
         }
     }
 }

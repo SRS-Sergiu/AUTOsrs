@@ -19,16 +19,16 @@ namespace AUTOsrs.ViewModels
         public string Email { get; set; }
         public string Name { get; set; }
       
+
         public string Model { get; set; }
         public string Marca { get; set; }
        
+
         public string NumeTipCaracteristica { get; set; }
         public string NumeCaracteristica { get; set; }
 
 
-
-
-
+       
 
         // img
         public List<CarImgModel> Photos { get; set; }

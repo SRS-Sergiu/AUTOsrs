@@ -1,4 +1,4 @@
-﻿@model AUTOsrs.ViewModels.DashboardViewModel
+﻿@model IEnumerable<AUTOsrs.ViewModels.DashboardViewModel>
 
 
     <div class="dashboarad_page">
@@ -64,7 +64,7 @@
                         <a href="index.html" class="list-group-item active main-color-bg">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
                         </a>
-                        <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Anunturi utilzatori<span class="badge">@Model.admin_anuntVM.Count()</span></a>
+                        @*<a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Anunturi utilzatori<span class="badge">@Model..Count()</span></a>*@
                         <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Programari <span class="badge">33</span></a>
                         <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">203</span></a>
                     </div>
@@ -93,7 +93,7 @@
                         <div class="panel-body">
                             <div class="col-md-3">
                                 <div class="well dash-box">
-                                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>@Model.admin_anuntVM.Count()</h2>
+                                    @*<h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>@Model.admin_anuntVM.Count()</h2>*@
                                     <h4>Anunturi</h4>
                                 </div>
                             </div>
@@ -118,6 +118,9 @@
                         </div>
                     </div>
 
+
+                 
+
                     <!-- Latest Users -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -125,114 +128,20 @@
                         </div>
                         <div class="panel-body" id="PartialAnutView">
 
-                            @foreach (var item in Model.admin_anuntVM)
-                            {
-                                <div class="carList_item">
+                      
+                            <hr />
 
+                            <hr />
+                            @*@{
 
-
-                                    <div class="car_img">
-                                        <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt">
-                                            <img class="byDefault_carList" src="~/File/AnuntFile?ID=@item.ID_Anunt" alt="" />
-                                        </a>
-
-                                    </div>
-
-
-                                   
-
-                                    <div class="car_content">
-                                        <div class="car_content_section1">
-                                            <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt">
-                                                <div class="car_title">
-
-                                                    <div class="car_title1">@Html.DisplayFor(modelItem => item.Marca)</div>
-                                                    <div class="car_title2">@Html.DisplayFor(modelItem => item.Model)</div>
-
-                                                </div>
-                                            </a>
-                                            <div class="car_price">
-                                                @Html.DisplayFor(modelItem => item.Pret)
-                                            </div>
-                                        </div>
-                                        <div class="car_content_section2">
-                                            <div class="car_description">
-                                                <div class="car_description1">
-                                                    <div class="car_descriptioN_IMG">
-                                                        <img src="~/Content/img/road.svg" alt="" />
-                                                    </div>
-                                                    <div class="car_descriptioN_tip">km</div>
-                                                </div>
-                                                <div class="car_description2">
-                                                    @Html.DisplayFor(modelItem => item.KM)
-                                                </div>
-
-                                            </div>
-                                            <div class="car_description car_descriptionA">
-                                                <div class="car_description1">
-                                                    <div class="car_descriptioN_IMG">
-                                                        <img src="~/Content/img/car.svg" alt="" />
-                                                    </div>
-                                                    <div class="car_descriptioN_tip">an</div>
-                                                </div>
-                                                <div class="car_description2">
-                                                    @Html.DisplayFor(modelItem => item.AnFabricatie)
-                                                </div>
-
-                                            </div>
-                                            <div class="car_description car_descriptionB">
-                                                <div class="car_description1">
-                                                    <div class="car_descriptioN_IMG">
-                                                        <img src="~/Content/img/gas-station.svg" alt="" />
-                                                    </div>
-                                                    <div class="car_descriptioN_tip">Caracteristica</div>
-                                                </div>
-                                                <div class="car_description2">
-                                                    @Html.DisplayFor(modelItem => item.NumeCaracteristica)
-                                                </div>
-
-                                            </div>
-                                            <div class="car_description">
-                                                <div class="car_description1">
-                                                    <div class="car_descriptioN_IMG">
-                                                        <img src="~/Content/img/support.svg" alt="" />
-                                                    </div>
-                                                    <div class="car_descriptioN_tip">Tip Caracteristica</div>
-                                                </div>
-                                                <div class="car_description2">
-                                                    @Html.DisplayFor(modelItem => item.NumeTipCaracteristica)
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="productsList_descriereScurta">
-                                            @Html.DisplayFor(modelItem => item.DescriereScurta)
-                                        </div>
-
-                                        <div class="car_btn">
-                                            <a href="/contact" class="car_btn_contact btn_srs">Contacteaza-ne</a>
-                                            <a href="/cere_oferta" class=" car_btn_offer btn_srs">Cere Oferta</a>
-                                            <a href="/Anunt/DetailsAnunt?ID=@item.ID_Anunt" class=" car_btn_offer btn_srs">Vezi Detalii</a>
-                                        </div>
-                                    </div>
-
-
-
-
-
-
-
-
-
-                                </div>
-
-                            }
+                                Html.RenderPartial("PartialAnuntView");
+                            }*@
                             <hr />
 
                             <hr />
                             @{
-                                Html.RenderAction("PartialAnuntView");
+
+                                Html.RenderPartial("_PartialAnuntView5");
                             }
                         </div>
                     </div>

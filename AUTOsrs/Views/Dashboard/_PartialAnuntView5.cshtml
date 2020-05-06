@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AUTOsrs.ViewModels.DashboardViewModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Anunt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pret)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnFabricatie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriereScurta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.D_Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.D_Marca)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Anunt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pret)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnFabricatie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriereScurta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.D_Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.D_Marca)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
