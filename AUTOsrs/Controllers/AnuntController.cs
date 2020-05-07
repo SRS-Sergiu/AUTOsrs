@@ -38,7 +38,7 @@ namespace AUTOsrs.Controllers
                 ModelAutoModel modelAutoModel = modelAutoRepository.GetModelAutoByID(anunt.ID_Model);
                 CaracteristiciModel caracteristiciModel = caracteristiciRepository.GetCaracteristiciModelByID(anunt.ID_Caracteristica);
                 TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristicaRepository.GetTipCaracteristicaByID(anunt.ID_TipCaracteristica);
-                anunt.Marca = marcaAutoModel.Marca;
+                //anunt.Marca3 = marcaAutoModel.Marca;
                 anunt.Model = modelAutoModel.Model;
                 anunt.NumeCaracteristica = caracteristiciModel.NumeCaracteristica;
                 anunt.NumeTipCaracteristica = tipCaracteristicaModel.NumeTipCaracteristica;
@@ -46,26 +46,26 @@ namespace AUTOsrs.Controllers
 
             return View("IndexAnunt", anunturi);
         }
-        //public ActionResult PartialAnuntView()
-        //{
+        public ActionResult PartialAnuntView()
+        {
 
-        //    List<AnuntModel> anunturi = anuntRepository.GetAllAnunt();
-        //    foreach (var anunt in anunturi)
-        //    {
-        //        MarcaAutoModel marcaAutoModel = marcaAutoRepository.GetMarcaAutoByID(anunt.ID_Marca);
-        //        ModelAutoModel modelAutoModel = modelAutoRepository.GetModelAutoByID(anunt.ID_Model);
-        //        CaracteristiciModel caracteristiciModel = caracteristiciRepository.GetCaracteristiciModelByID(anunt.ID_Caracteristica);
-        //        TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristicaRepository.GetTipCaracteristicaByID(anunt.ID_TipCaracteristica);
-        //        anunt.Marca = marcaAutoModel.Marca;
-        //        anunt.Model = modelAutoModel.Model;
-        //        anunt.NumeCaracteristica = caracteristiciModel.NumeCaracteristica;
-        //        anunt.NumeTipCaracteristica = tipCaracteristicaModel.NumeTipCaracteristica;
-        //    }
+            List<AnuntModel> anunturi = anuntRepository.GetAllAnunt();
+            foreach (var anunt in anunturi)
+            {
+                MarcaAutoModel marcaAutoModel = marcaAutoRepository.GetMarcaAutoByID(anunt.ID_Marca);
+                ModelAutoModel modelAutoModel = modelAutoRepository.GetModelAutoByID(anunt.ID_Model);
+                CaracteristiciModel caracteristiciModel = caracteristiciRepository.GetCaracteristiciModelByID(anunt.ID_Caracteristica);
+                TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristicaRepository.GetTipCaracteristicaByID(anunt.ID_TipCaracteristica);
+                anunt.Marca3 = marcaAutoModel.Marca;
+                anunt.Model = modelAutoModel.Model;
+                anunt.NumeCaracteristica = caracteristiciModel.NumeCaracteristica;
+                anunt.NumeTipCaracteristica = tipCaracteristicaModel.NumeTipCaracteristica;
+            }
 
 
 
-        //    return PartialView("PartialAnuntView", anunturi);
-        //}
+            return PartialView("PartialAnuntView", anunturi);
+        }
 
 
 

@@ -59,22 +59,25 @@ namespace AUTOsrs.Repository
         public List<MarcaAutoModel> GetAllMarca()
         {
             List<MarcaAutoModel> marcaList = new List<MarcaAutoModel>();
-            foreach (MarcaAuto dbMarca in dbContext.MarcaAutos)
+            foreach (Models.DbObjects.MarcaAuto dbMarca in dbContext.MarcaAutos)
             {
                 marcaList.Add(MapDbObjectToModel(dbMarca));
             }
             return marcaList;
         }
-     public List<MarcaAutoModel> GetAllMarcaAutoByID(Guid id)
+
+
+    
+        public List<MarcaAutoModel> GetAllMarcaAutoByID(Guid id)
         {
             List<MarcaAutoModel> marcaAutoList = new List<MarcaAutoModel>();
             List<MarcaAuto> marcaAuto = dbContext.MarcaAutos.Where(x => x.ID_Marca == id).ToList();
-            foreach (Models.DbObjects.MarcaAuto  marcaAuto1 in marcaAuto)
+            foreach (Models.DbObjects.MarcaAuto marcaAuto1 in marcaAuto)
             {
                 MarcaAutoModel marcaAutoModel = new MarcaAutoModel();
                 marcaAutoModel.Marca = marcaAuto1.Marca;
                 marcaAutoModel.ID_Marca = marcaAuto1.ID_Marca;
-                
+
 
                 marcaAutoList.Add(marcaAutoModel);
             }

@@ -22,7 +22,7 @@ namespace AUTOsrs.Models
         public string Name { get; set; }
         public Guid ID_Marca { get; set; }
         public string Model { get; set; }
-        public string Marca { get; set; }
+        public string Marca3 { get; set; }
         public Guid ID_TipCaracteristica { get; set; }
         public string NumeTipCaracteristica { get; set; }
         public string NumeCaracteristica { get; set; }
