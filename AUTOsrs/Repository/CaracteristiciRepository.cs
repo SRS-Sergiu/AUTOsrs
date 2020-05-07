@@ -1,5 +1,6 @@
 ﻿using AUTOsrs.Models;
 using AUTOsrs.Models.DbObjects;
+using AUTOsrs.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,15 @@ namespace AUTOsrs.Repository
             }
             return caracteristiciModelList;
         }
+
+        // Dashboard get list of caract
+        //public DashboardViewModel GettAllCaractForAdminById(Guid ID)
+        //{
+        //    return MapDbObjectToModel(dbContext.Caracteristicis.FirstOrDefault(x => x.ID_Caracteristica == ID));
+        //}
+
+
+
 
         //get all the CaracteristiciModel by id
         public CaracteristiciModel GetCaracteristiciModelByID(Guid ID)
@@ -113,19 +123,7 @@ namespace AUTOsrs.Repository
         }
 
 
-        //viewModel
-        //public AdminMarcaViewModel GetAdmin(Guid CaracteristiciModelID)
-        //{
-        //    AdminMarcaViewModel adminMarcaViewModel = new AdminMarcaViewModel();
+      // dashboard caract view
 
-        //    CaracteristiciModel CaracteristiciModel = dbContext.CaracteristiciModels.FirstOrDefault(x => x.ID_Model == CaracteristiciModelID);
-
-        //    if(CaracteristiciModel != null)
-        //    {
-        //        adminMarcaViewModel.Model = CaracteristiciModel.Model;
-        //    }
-
-        //    return null;
-        //}
     }
 }

@@ -39,11 +39,11 @@ namespace AUTOsrs.ViewModels
 
         public List<CaracteristiciModel> admin_Caracteristica { get; set; }
         public List<TipCaracteristicaModel> admin_tipCaracteristica { get; set; }
-        public List<ModelAutoModel> admin_Model { get; set; }
-        public List<MarcaAutoModel> admin_Marca { get; set; }
-   
-        
+        //public List<ModelAutoModel> admin_Model { get; set; }
+        //public List<MarcaAutoModel> admin_Marca { get; set; }
 
     }
+
+
  
 }

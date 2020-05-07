@@ -20,8 +20,6 @@ namespace AUTOsrs.Controllers
         private Repository.MarcaAutoRepository marcaAutoRepository = new Repository.MarcaAutoRepository();
 
 
-
-
         // GET: Dashboard
         public ActionResult Index()
         {
@@ -43,30 +41,18 @@ namespace AUTOsrs.Controllers
 
 
 
-
-
         // -------------
         // Partial views
-        public ActionResult PartialAnuntView()
+        public ActionResult PartialViewTipCaracteristici()
         {
+            //DashboardViewModel dabAdminCaract = new DashboardViewModel();
+            //dabAdminCaract.admin_Caracteristica = caracteristiciRepository.GetAllCaracteristici();
 
-            List<DashboardViewModel> dashboardViewModels = anuntRepository.GetAllAnuntDashboard();
-            foreach (var anunt in dashboardViewModels)
-            {
-                MarcaAutoModel marcaAutoModel = marcaAutoRepository.GetMarcaAutoByID(anunt.ID_Marca);
-                ModelAutoModel modelAutoModel = modelAutoRepository.GetModelAutoByID(anunt.ID_Model);
-                //CaracteristiciModel caracteristiciModel = caracteristiciRepository.GetCaracteristiciModelByID(anunt.ID_Caracteristica);
-                //TipCaracteristicaModel tipCaracteristicaModel = tipCaracteristicaRepository.GetTipCaracteristicaByID(anunt.ID_TipCaracteristica);
-                anunt.D_Marca = marcaAutoModel.Marca;
-                anunt.D_Model = modelAutoModel.Model;
-                //anunt.NumeCaracteristica = caracteristiciModel.NumeCaracteristica;
-                //anunt.NumeTipCaracteristica = tipCaracteristicaModel.NumeTipCaracteristica;
-            }
-
-
-            return PartialView("PartialAnuntView", dashboardViewModels);
+            return PartialView("PartialViewTipCaracteristici");
         }
 
+
+        // return partialview of anunts list
         public ActionResult PartialAnuntView5()
         {
             DashboardViewModel dashboardViewModel = new DashboardViewModel();

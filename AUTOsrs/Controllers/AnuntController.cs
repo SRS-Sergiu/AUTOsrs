@@ -91,13 +91,6 @@ namespace AUTOsrs.Controllers
             return View(anuntGeneralViewModel);
         }
 
-        //public AnuntController(IHostingEnvironment hostingEnvironment)
-        //{
-        //    _hostingEnvironment = hostingEnvironment;
-        //}
-        //private readonly IHostingEnvironment _hostingEnvironment;
-
-       
 
         [HttpPost]
         public ActionResult CreateAnunt(AnuntGeneralViewModel model)

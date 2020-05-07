@@ -436,6 +436,8 @@
     <Content Include="Views\Anunt\PartialAnuntView2.cshtml" />
     <Content Include="Views\Dashboard\_PartialAnuntView5.cshtml" />
     <Content Include="Views\Anunt\PartialAnuntView.cshtml" />
+    <Content Include="Views\Dashboard\_PartialViewTipCaracteristici.cshtml" />
+    <Content Include="Views\Dashboard\_Panel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
